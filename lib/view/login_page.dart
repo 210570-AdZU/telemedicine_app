@@ -1,0 +1,341 @@
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import '../components/account_button.dart';
+import '../components/my_textfield.dart';
+import '../controllers/login_controller.dart';
+import '../controllers/login_or_register_controller.dart';
+
+class LoginPage extends StatelessWidget {
+  final LoginController controller = Get.put(LoginController());
+  final Function()? onTap;
+
+  LoginPage({
+    super.key,
+    this.onTap
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Padding(
+        padding: const EdgeInsets.all(24.0),
+        child: SingleChildScrollView(
+          child: Column(
+            children: <Widget>[
+              SizedBox(height: 120,),
+              const Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  Image(
+                    image: AssetImage('lib/assets/images/Removal-432.png'),
+                    fit: BoxFit.cover,
+                    width: 47,
+                    height: 63,
+                  ),
+                  Padding(
+                    padding: EdgeInsets.only(left: 20),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          'Sign In',
+                          style: TextStyle(
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.teal,
+                          ),
+                        ),
+                        Text('Enter your credentials to continue', style: TextStyle(fontSize: 11),)
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+
+              SizedBox(height: 72,),
+
+              // Email text field
+              MyTextfield(
+                identifier: "email",
+                hintText: "Email",
+                obscureText: false,
+                controller: controller.emailController,
+                prefixIcon: Icons.person,
+              ),
+
+              SizedBox(height: 24,),
+
+              // Password text field
+              MyTextfield(
+                identifier: "password",
+                hintText: "Password",
+                obscureText: true,
+                controller: controller.passwordController,
+                prefixIcon: Icons.lock,
+                suffixIcon: Icons.visibility_off,
+              ),
+
+              SizedBox(height: 24,),
+
+              // Forgot password
+              const Padding(
+                padding: EdgeInsets.only(right: 18),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    Text("Forgot Password?"),
+                  ],
+                ),
+              ),
+
+              SizedBox(height: 24,),
+
+              // Login button
+              AccountButton(
+                text: "Login",
+                color: Colors.blueGrey,
+                onTap: () {
+                  controller.login();
+                  if(onTap!=null){
+                    onTap!();
+                  }
+                },
+              ),
+
+              SizedBox(height: 10,),
+
+              // Register link
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text("Don't have an account? "),
+                  GestureDetector(
+                    onTap: () => Get.find<LoginOrRegisterController>().togglePages(),
+                    child: const Text(
+                      "Register here",
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        color: Colors.teal,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+
+              SizedBox(height: 12,),
+
+              // Test text (optional)
+              const Padding(
+                padding: EdgeInsets.only(right: 18),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      "©2023 Zamboanga City Medical Center. All rights reserved",
+                      style: TextStyle(fontSize: 8),
+                    )
+                  ],
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+// import 'package:flutter/material.dart';
+// import 'package:loginattempt/components/my_button.dart';
+// import 'package:loginattempt/components/my_textfield.dart';
+
+// class LoginPage extends StatelessWidget {
+//   TextEditingController emailController = TextEditingController();
+//   TextEditingController passwordController = TextEditingController();
+//   final void Function()? onTap;
+
+//   // String emailRegex = r"[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0 -9](?:[a-zA-Z0-9-]*[a-zA-Z0-9])?\.[a-zA-Z]{2,}";
+
+//   bool isValidEmail(String email) {
+//     String emailRegex = r"^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*\.[a-zA-Z]{2,7}$";
+//     RegExp regExp = RegExp(emailRegex); 
+//     return regExp.hasMatch(email);
+//   }
+
+//   LoginPage({
+//     super.key,
+//     required this.onTap,
+//   });
+
+//   @override
+//   Widget build(BuildContext context) {
+
+//   //login method
+//   void login() {
+//     if (!isValidEmail(emailController.text)) {
+//       showDialog(
+//         context: context,
+//         builder: (context) => AlertDialog(
+//           title: Text("Invalid Email"),
+//           content: Text("Please enter a valid email address as you type."),
+//           actions: [
+//             TextButton(
+//               onPressed: () => Navigator.pop(context),
+//               child: Text("OK"),
+//             ),
+//           ],
+//         ),
+//       );
+//       print("false");
+//     } else {
+//       // Proceed with login
+//       if (onTap != null) {
+//         onTap!();
+//       }
+//       showDialog(
+//         context: context,
+//         builder: (context) => AlertDialog(
+//           title: Text("Valid Email"),
+//           content: Text("It works"),
+//           actions: [
+//             TextButton(
+//               onPressed: () => Navigator.pop(context),
+//               child: Text("OK"),
+//             ),
+//           ],
+//         ),
+//       );
+//     }
+//   }
+
+//     return Scaffold(
+//       body: Padding(
+//         padding: const EdgeInsets.all(24.0),
+//         child: SingleChildScrollView(
+//           child: Column(
+//             children: <Widget>[
+//               SizedBox(height: 120,),
+//               const Row(
+//                 mainAxisAlignment: MainAxisAlignment.start,
+//                 //logo
+//                 children: [
+//                   Image(
+//                     image: AssetImage('lib/assets/images/Removal-432.png'),
+//                     fit: BoxFit.cover,
+//                     width: 59.73,
+//                     height: 80,
+//                   ),
+//                 //company
+//                   Padding(
+//                     padding: EdgeInsets.only(left: 16),
+//                     child: Column(
+//                       crossAxisAlignment: CrossAxisAlignment.start,
+//                       children: [
+//                         Text('Sign In',
+//                               style: TextStyle(
+//                               fontSize: 24,
+//                               fontWeight: FontWeight.bold,
+//                               color: Colors.teal
+//                               ),
+//                             textAlign: TextAlign.left,
+//                             ),
+//                         Text('Enter your credentials to continue', style: TextStyle(fontSize: 12),)
+//                       ],
+//                     ),
+//                   ),
+//                 ],
+//               ),
+          
+//                 SizedBox(height: 64,),
+          
+//                 //email
+//                 MyTextfield(
+//                   identifier: "email",
+//                   hintText: "Email",
+//                   obscureText: false,
+//                   controller: emailController,
+//                   prefixIcon: Icons.person,
+//                 ),
+          
+//                 SizedBox(height: 24,),
+                
+//                 //password
+//                 MyTextfield(
+//                   identifier: "password",
+//                   hintText: "Password",
+//                   obscureText: true,
+//                   controller: passwordController,
+//                   prefixIcon: Icons.lock,
+//                   suffixIcon: Icons.visibility_off,
+//                 ),
+          
+//                 SizedBox(height: 24,),
+          
+//                 //forgot password
+//                 const Padding(
+//                   padding: EdgeInsets.only(right:18),
+//                   child: Row(
+//                     mainAxisAlignment: MainAxisAlignment.end,
+//                     children: [
+//                       Text("Forgot Password?")
+//                     ],
+//                   ),
+//                 ),
+          
+//                 SizedBox(height: 24,),
+          
+//                 //sign in
+//                 SubmitButton(
+//                   text: "Login",
+//                   color: Colors.teal,
+//                   onTap: () => login(),
+//                 ),
+          
+//                 SizedBox(height: 20,),
+          
+//                 //sign in
+//                 SubmitButton(
+//                   text: "Home",
+//                   onTap: (){},
+//                   color: Colors.grey
+//                 ),
+          
+//                 SizedBox(height: 10,),
+          
+//                 Row(
+//                   mainAxisAlignment: MainAxisAlignment.center,
+//                   children: [
+//                     Text("Don't have an account? "),
+//                     GestureDetector(
+//                       onTap: onTap,
+//                       child: const Text(
+//                         "Register here",
+//                         style: TextStyle(
+//                           fontWeight: FontWeight.bold
+//                         ),
+//                       ),
+//                     ),
+//                   ],
+//                 ),
+          
+//                 SizedBox(height: 24,),
+          
+//                 //forgot password
+//                 const Padding(
+//                   padding: EdgeInsets.only(right:18),
+//                   child: Row(
+//                     mainAxisAlignment: MainAxisAlignment.center,
+//                     children: [
+//                       Text(
+//                         "test",
+//                         style: TextStyle(fontSize: 8),
+//                       )
+//                     ],
+//                   ),
+//                 ),
+//             ],
+//           ),
+//         ),
+//       ),
+//     );
+//   }
+// }
