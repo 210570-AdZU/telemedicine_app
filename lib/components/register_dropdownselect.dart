@@ -29,10 +29,10 @@ class _RegisterDropdownselectState extends State<RegisterDropdownselect> {
       decoration: InputDecoration(
         isDense: true,
         border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(10.0), // for rounded corners
-          borderSide: BorderSide(color: Colors.blue, width: 2.0), // border
+          borderRadius: BorderRadius.circular(10.0),
+          borderSide: BorderSide(color: Colors.blue, width: 2.0),
         ),
-        contentPadding: EdgeInsets.symmetric(vertical: 8.0), // padding
+        contentPadding: EdgeInsets.symmetric(vertical: 8.0),
       ),
       onChanged: (String? newValue) {
         setState(() {

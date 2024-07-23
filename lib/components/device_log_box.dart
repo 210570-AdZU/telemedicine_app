@@ -19,7 +19,6 @@ class _DeviceLogBox extends State<DeviceLogBox> {
     return Stack(
       clipBehavior: Clip.none,
       children: [
-        // Positioned widget fo
         Material(
           elevation: 2,
           borderRadius: BorderRadius.circular(4),

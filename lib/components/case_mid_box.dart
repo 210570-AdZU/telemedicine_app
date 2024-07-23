@@ -26,7 +26,7 @@ class _CaseMidBoxState extends State<CaseMidBox> {
       children: [
         InkWell(
           onTap: widget.onTap,
-          borderRadius: BorderRadius.circular(24), // This will match the Material's borderRadius
+          borderRadius: BorderRadius.circular(24),
           child: Material(
             elevation: 3,
             borderRadius: BorderRadius.circular(4),

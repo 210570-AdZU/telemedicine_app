@@ -16,7 +16,6 @@ class _APopboxState extends State<APopbox> {
     return Stack(
       clipBehavior: Clip.none,
       children: [
-        // Positioned widget for the top-left label
         Positioned(
           left: 4,
           top: -24,
@@ -31,7 +30,6 @@ class _APopboxState extends State<APopbox> {
             ),
           ),
         ),
-        // Positioned widget for the top-right label
         Positioned(
           right: 4,
           top: -24,
@@ -46,10 +44,9 @@ class _APopboxState extends State<APopbox> {
             ),
           ),
         ),
-        // Your existing APopbox widget
         InkWell(
           onTap: widget.onTap,
-          borderRadius: BorderRadius.circular(24), // This will match the Material's borderRadius
+          borderRadius: BorderRadius.circular(24),
           child: Material(
             elevation: 2,
             borderRadius: BorderRadius.circular(12),

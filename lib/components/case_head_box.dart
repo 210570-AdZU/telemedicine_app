@@ -20,7 +20,7 @@ class _CaseHeadBoxState extends State<CaseHeadBox> {
           child: Material(
             child: Container(
               decoration: BoxDecoration(
-                border: Border.all(color: Colors.grey, width: 1), // Outline added here
+                border: Border.all(color: Colors.grey, width: 1),
                 borderRadius: BorderRadius.circular(8),
               ),
               child: Padding(

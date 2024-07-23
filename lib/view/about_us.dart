@@ -16,7 +16,7 @@ class AboutUs extends StatelessWidget {
               Container(width: 40, child: Image.asset('lib/assets/images/Removal-432.png')),
               SizedBox(width: MediaQuery.of(context).size.width * 0.075,),
               Column(
-                crossAxisAlignment: CrossAxisAlignment.start, // Align text to the start
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
                     'Telemedicine Web App',

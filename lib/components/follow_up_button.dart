@@ -29,7 +29,7 @@ class _FollowUpButtonState extends State<FollowUpButton> {
               color: Colors.blueGrey,
             ),
             child: Row(
-              mainAxisSize: MainAxisSize.min, // Ensures the row only takes up as much space as needed
+              mainAxisSize: MainAxisSize.min,
               children: [
                 Container(
                   width: 24,
@@ -46,7 +46,7 @@ class _FollowUpButtonState extends State<FollowUpButton> {
                     ),
                   ),
                 ),
-                SizedBox(width: 8), // Adjust spacing between icon and text
+                SizedBox(width: 8),
                 Text(
                   "Admin",
                   style: TextStyle(

@@ -24,7 +24,6 @@ class Archives extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // Search bar and dropdown row
             SizedBox(height: MediaQuery.of(context).size.height * 0.015,),
             Row(
               mainAxisAlignment: MainAxisAlignment.start,
