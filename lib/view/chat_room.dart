@@ -228,9 +228,9 @@ void attachFile() async {
                                 fit: BoxFit.cover,
                               )
                             else if (message.fileName!.endsWith('.pdf'))
-                              Text("PDF file") // Add your PDF rendering code here
+                              Text("PDF file")
                             else
-                              Text("File cannot be previewed"), // For other file types
+                              Text("File cannot be previewed"),
                           ],
                         ),
                       ),
