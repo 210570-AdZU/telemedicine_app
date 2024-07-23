@@ -24,7 +24,7 @@ class _RegisterCaseButtonState extends State<RegisterCaseButton> {
             padding: EdgeInsets.symmetric(vertical: 12, horizontal: 16),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(32),
-              color: Colors.blueGrey,
+              color: Colors.black45,
             ),
             child: Row(
               mainAxisSize: MainAxisSize.min,

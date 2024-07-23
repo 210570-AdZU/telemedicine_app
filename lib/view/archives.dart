@@ -25,34 +25,30 @@ class Archives extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             // Search bar and dropdown row
+            SizedBox(height: MediaQuery.of(context).size.height * 0.015,),
             Row(
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
+                SizedBox(width: MediaQuery.of(context).size.width * 0.03,),
                 MySearchbar(),
-        
-                SizedBox(width: MediaQuery.of(context).size.width * 0.075,),
-        
+                SizedBox(width: MediaQuery.of(context).size.width * 0.13,),
                 SizedBox(
                   width: MediaQuery.of(context).size.width * 0.3,
                   child: HomeDropdownselect(
-                    selectList: [
-                      '(None)',
-                      'Done',
-                      'Pending'
-                    ],
+                    selectList: ['All'],
                   ),
                 ),
               ],
             ),
-            // List of items
-            SizedBox(height:MediaQuery.of(context).size.width * 0.05,),
+            SizedBox(height:MediaQuery.of(context).size.width * 0.09,),
             Expanded(
               child: ListView.builder(
+                padding: EdgeInsets.all(8),
                 itemCount: controller.archiveItem.length,
                 itemBuilder: (context, index){
                   ArchivesModel item = controller.archiveItem[index];
                   return APopbox(
-                    title: "TEST",
+                    title: "Maria N. Thanos",
                     onTap: ()=>{Get.toNamed('/caseview')},
                   );
                 })

@@ -35,7 +35,7 @@ class _DoctorPageState extends State<DoctorPage> {
                 SizedBox(
                   width: MediaQuery.of(context).size.width * 0.3,
                   child: HomeDropdownselect(
-                    selectList: ['All'],
+                    selectList: ['All', 'Test', 'What'],
                   ),
                 ),
               ],

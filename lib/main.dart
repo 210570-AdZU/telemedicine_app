@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:layout_design/auth/login_or_register.dart';
 import 'package:layout_design/view/archives.dart';
 import 'package:layout_design/view/case_view.dart';
+import 'package:layout_design/view/chat_room.dart';
 import 'package:layout_design/view/doctor_page.dart';
 import 'package:layout_design/view/first_page.dart';
 import 'package:layout_design/view/menu_page.dart';
@@ -23,6 +24,7 @@ class MyApp extends StatelessWidget {
     GetPage(name: '/caseview', page: () => CaseView()),
     GetPage(name: '/menupage', page: () => MenuPage()),
     GetPage(name: '/registercasepage', page: () => RegisterCasePage()),
+    GetPage(name: '/chatroom', page: () => ChatRoom()),
   ];
   MyApp({super.key});
 

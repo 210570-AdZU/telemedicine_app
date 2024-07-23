@@ -40,15 +40,60 @@ class FirstPage extends StatelessWidget {
         ),
         actions: <Widget>[
           IconButton(
-            icon: Icon(Icons.message),
+            iconSize: 20, // Adjust iconSize as needed
+            icon: Stack(
+              clipBehavior: Clip.none, // Allow items to overflow outside Stack boundaries
+              children: [
+                Icon(Icons.message_outlined),
+                Positioned(
+                  top: -4, // Adjust top position to bring the CircleAvatar upward
+                  right: -10, // Adjust right position to bring the CircleAvatar rightward
+                  child: CircleAvatar(
+                    radius: 10,
+                    backgroundColor: Colors.blueGrey,
+                    child: Text(
+                      "2",
+                      style: TextStyle(
+                        fontSize: 10,
+                        color: Colors.white,
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
             onPressed: () {
-              controller.showOverlay(context);
+              controller.showMessageNotifOverlay(context);
             },
           ),
           IconButton(
-            icon: Icon(Icons.notifications),
+            iconSize: 28, // Adjust iconSize as needed
+            icon: Stack(
+              clipBehavior: Clip.none, // Allow items to overflow outside Stack boundaries
+              children: [
+                Icon(
+                  Icons.notifications_outlined,
+                  color: Colors.orange,
+                ),
+                Positioned(
+                  top: 0, // Adjust top position to bring the CircleAvatar upward
+                  right: -8, // Adjust right position to bring the CircleAvatar rightward
+                  child: CircleAvatar(
+                    radius: 10,
+                    backgroundColor: Colors.orange,
+                    child: Text(
+                      "2",
+                      style: TextStyle(
+                        fontSize: 10,
+                        color: Colors.white,
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
             onPressed: () {
-              print("uhh");
+              controller.showNotifOverlay(context);
             },
           ),
           IconButton(
@@ -68,8 +113,8 @@ class FirstPage extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     buildNavItem(context, Icons.people, 'Doctor', 0),
-                    buildNavItem(context, Icons.person, 'Patient', 1),
-                    buildNavItem(context, Icons.folder, 'Archives', 2),
+                    buildNavItem(context, Icons.medication_outlined, 'Patient', 1),
+                    buildNavItem(context, Icons.folder_copy_outlined, 'Archives', 2),
                   ],
                 ),
               )),
@@ -93,7 +138,7 @@ class FirstPage extends StatelessWidget {
           ),
           Container(
             height: 2,
-            width: MediaQuery.of(context).size.width / controller.pageNum.value, // Takes up one third of the bar
+            width: MediaQuery.of(context).size.width / controller.pageNum.value,
             color: controller.selectedIndex.value == index ? Colors.blueGrey : Colors.transparent,
           ),
         ],

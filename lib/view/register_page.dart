@@ -29,7 +29,7 @@ class RegisterPage extends StatelessWidget {
               SizedBox(height: 20,),
               const Row(
                 mainAxisAlignment: MainAxisAlignment.start,
-                //logo
+
                 children: [
                   Image(
                     image: AssetImage('lib/assets/images/Removal-432.png'),
@@ -37,7 +37,7 @@ class RegisterPage extends StatelessWidget {
                     width: 47,
                     height: 63,
                   ),
-                //company
+
                 Padding(
                   padding: EdgeInsets.only(left: 16),
                   child: Column(
@@ -59,8 +59,7 @@ class RegisterPage extends StatelessWidget {
               ),
           
                 SizedBox(height: 40,),
-          
-                //email
+
                 MyTextfield(
                   identifier: "first name",
                   hintText: "Enter first name",
@@ -70,8 +69,7 @@ class RegisterPage extends StatelessWidget {
                 ),
           
                 SizedBox(height: 24,),
-          
-                //email
+
                 MyTextfield(
                   identifier: "middle name",
                   hintText: "Enter middle name",
@@ -81,8 +79,7 @@ class RegisterPage extends StatelessWidget {
                 ),
           
                 SizedBox(height: 24,),
-          
-                //email
+
                 MyTextfield(
                   identifier: "last name",
                   hintText: "Enter last name",
@@ -92,8 +89,7 @@ class RegisterPage extends StatelessWidget {
                 ),
           
                 SizedBox(height: 24,),
-          
-                //email
+
                 MyTextfield(
                   identifier: "extension name",
                   hintText: "Enter extension name",
@@ -128,8 +124,7 @@ class RegisterPage extends StatelessWidget {
                 ),
           
                 SizedBox(height: 24,),
-          
-                //email
+
                 MyTextfield(
                   identifier: "email",
                   hintText: "Email",
@@ -139,8 +134,7 @@ class RegisterPage extends StatelessWidget {
                 ),
           
                 SizedBox(height: 24,),
-                
-                //password
+
                 MyTextfield(
                   identifier: "password",
                   hintText: "Password",
@@ -166,7 +160,7 @@ class RegisterPage extends StatelessWidget {
           
                 SizedBox(height: 24,),
           
-                //sign in
+                //sign up
                 AccountButton(
                   text: "Submit",
                   color: Colors.blueGrey,
@@ -174,8 +168,7 @@ class RegisterPage extends StatelessWidget {
                 ),
           
                 SizedBox(height: 20,),
-          
-                //sign in
+
                 AccountButton(
                   text: "Back",
                   onTap: ()=> Get.find<LoginOrRegisterController>().togglePages(),
@@ -185,7 +178,6 @@ class RegisterPage extends StatelessWidget {
           
                 SizedBox(height: 24,),
           
-                //forgot password
                 const Padding(
                   padding: EdgeInsets.only(right:18),
                   child: Row(

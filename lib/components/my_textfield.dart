@@ -81,7 +81,7 @@ class _MyTextfieldState extends State<MyTextfield> {
       controller: widget.controller,
       focusNode: _clicked,
       onChanged: (value) => setState(() {_showError=false;}),
-      obscureText: _obscureText,
+      obscureText: widget.obscureText,
       maxLines: widget.maxLines,
       decoration: InputDecoration(
         errorText: validateName(widget.controller.text),
@@ -92,10 +92,10 @@ class _MyTextfieldState extends State<MyTextfield> {
         prefixIcon: widget.prefixIcon != null ? Icon(widget.prefixIcon, color: Colors.teal,) : null,
         suffixIcon: widget.suffixIcon != null
             ? IconButton(
-                icon: Icon(_obscureText ? Icons.visibility : Icons.visibility_off,),
+                icon: Icon(widget.obscureText ? Icons.visibility : Icons.visibility_off,),
                 onPressed: () {
                   setState(() {
-                    _obscureText = !_obscureText;
+                    widget.obscureText = !widget.obscureText;
                   });
                 },
               )

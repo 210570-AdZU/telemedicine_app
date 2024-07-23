@@ -16,23 +16,19 @@ class PatientPage extends StatelessWidget {
         padding: const EdgeInsets.all(8.0),
         child: Column(
           children: [
-            // This widget will appear right below the AppBar
+            SizedBox(height: MediaQuery.of(context).size.height * 0.015,),
             Row(
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
+                SizedBox(width: MediaQuery.of(context).size.width * 0.03,),
                 MySearchbar(),
-        
-                SizedBox(width: MediaQuery.of(context).size.width * 0.075,),
-        
+                SizedBox(width: MediaQuery.of(context).size.width * 0.13,),
                 SizedBox(
                   width: MediaQuery.of(context).size.width * 0.3,
                   child: HomeDropdownselect(
-                    selectList: ['(None)',
-                    'Male',
-                    'Female'
-                    ],
-                  )
-                )
+                    selectList: ['All', 'Test', 'What'],
+                  ),
+                ),
               ],
             ),
           ],

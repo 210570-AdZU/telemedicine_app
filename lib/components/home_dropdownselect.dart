@@ -2,28 +2,32 @@ import 'package:flutter/material.dart';
 
 class HomeDropdownselect extends StatefulWidget {
   final List<String> selectList;
+  final String initialValue;
 
   HomeDropdownselect({
     Key? key,
-    required this.selectList
-  }) : super(key: key);
+    required this.selectList,
+    String? initialValue,
+  }) : initialValue = initialValue ?? (selectList.isNotEmpty ? selectList[0] : ''),
+       super(key: key);
 
   @override
   State<HomeDropdownselect> createState() => _HomeDropdownselectState();
 }
 
 class _HomeDropdownselectState extends State<HomeDropdownselect> {
-  String dropdownValue = '';
+  late String dropdownValue; // Initialize late to avoid null safety issues
 
   @override
   void initState() {
     super.initState();
-    dropdownValue = widget.selectList.first;
+    dropdownValue = widget.initialValue; // Set initial value from widget parameter
   }
 
   @override
   Widget build(BuildContext context) {
     return DropdownButtonFormField<String>(
+      value: dropdownValue, // Set the initial value
       decoration: InputDecoration(
         isDense: true,
         fillColor: Colors.white,
