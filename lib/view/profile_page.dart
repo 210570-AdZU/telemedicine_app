@@ -164,7 +164,7 @@ class ProfilePage extends StatelessWidget {
                 obscureText: false,
                 controller: authController.emailController,
               ),
-                SizedBox(height: 20,),
+              SizedBox(height: 20,),
               Row(
                 children: [
                   ElevatedButton(
