@@ -2,9 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:layout_design/components/account_button.dart';
 import 'package:layout_design/controllers/menu_page_controller.dart';
+import 'package:layout_design/controllers/auth_controller.dart';
 
 class MenuPage extends StatelessWidget {
   final MenuPageController controller = Get.put(MenuPageController());
+  final AuthController authController = Get.put(AuthController());
 
   @override
   Widget build(BuildContext context) {
@@ -14,19 +16,24 @@ class MenuPage extends StatelessWidget {
         title: Row(
           children: [
             Container(
-              width: 64,
+              width: 56,
               child: CircleAvatar(
-                backgroundColor: Colors.black12,
+                backgroundColor: Colors.black,
                 radius: MediaQuery.of(context).size.width * 0.072,
-                child: Icon(
-                  Icons.person, size: 48,
-                  color: Colors.black26,
-                ),
+                child: Center(
+                  child: Text(
+                    authController.fNameController.text[0].toUpperCase() + authController.lNameController.text[0].toUpperCase(),
+                    style: TextStyle(
+                      fontSize: 20,
+                      color: Colors.white
+                    ),
+                  ),
+                )
               )
             ),
             SizedBox(width: 8,),
             Text(
-              'Name Example',
+              authController.fNameController.text + ' ' + authController.mNameController.text + ' ' + authController.lNameController.text,
               style: TextStyle(
                 fontSize: 15,
                 fontWeight: FontWeight.bold,
@@ -57,7 +64,7 @@ class MenuPage extends StatelessWidget {
                   leading: Icon(Icons.person),
                   title: Text("Profile"),
                   onTap: () {
-                    Get.to(controller.pages[0]);
+                    Get.to(() =>(controller.pages[0]));
                   },
                 ),
                 Divider(height: 0,),
@@ -65,7 +72,7 @@ class MenuPage extends StatelessWidget {
                   leading: Icon(Icons.more_horiz),
                   title: Text("Change Password"),
                   onTap: () {
-                    Get.to(controller.pages[1]);
+                    Get.to(() =>(controller.pages[1]));
                   },
                 ),
                 Divider(height: 0,),
@@ -73,7 +80,7 @@ class MenuPage extends StatelessWidget {
                   leading: Icon(Icons.monitor_outlined),
                   title: Text("Device Log"),
                   onTap: () {
-                    Get.to(controller.pages[2]);
+                    Get.to(() =>(controller.pages[2]));
                   },
                 ),
                 Divider(height: 0,),
@@ -81,7 +88,7 @@ class MenuPage extends StatelessWidget {
                   leading: Icon(Icons.info),
                   title: Text("Terms and Conditions"),
                   onTap: () {
-                    Get.to(controller.pages[3]);
+                    Get.to(() =>(controller.pages[3]));
                   },
                 ),
                 Divider(height: 0,),
@@ -89,14 +96,14 @@ class MenuPage extends StatelessWidget {
                   leading: Icon(Icons.info_outline),
                   title: Text("About Us"),
                   onTap: () {
-                    Get.to(controller.pages[4]);
+                    Get.to(() =>(controller.pages[4]));
                   },
                 ),
                 Divider(height: 0,),
               ],
             ),
             Container(
-              child: AccountButton(text: 'Logout', onTap: () => (Get.toNamed('/loginpage')), color: Colors.red),
+              child: AccountButton(text: 'Logout', onTap: authController.logout, color: Colors.red),
             )
           ],
         ),

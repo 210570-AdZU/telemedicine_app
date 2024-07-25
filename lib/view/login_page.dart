@@ -3,10 +3,11 @@ import 'package:get/get.dart';
 import '../components/account_button.dart';
 import '../components/my_textfield.dart';
 import '../controllers/login_controller.dart';
-import '../controllers/login_or_register_controller.dart';
+import 'package:layout_design/controllers/auth_controller.dart';
 
 class LoginPage extends StatelessWidget {
   final LoginController controller = Get.put(LoginController());
+  final AuthController authController = Get.put(AuthController());
   final Function()? onTap;
 
   LoginPage({
@@ -59,7 +60,7 @@ class LoginPage extends StatelessWidget {
                 identifier: "email",
                 hintText: "Email",
                 obscureText: false,
-                controller: controller.emailController,
+                controller: authController.emailController,
                 prefixIcon: Icons.person,
               ),
 
@@ -70,7 +71,7 @@ class LoginPage extends StatelessWidget {
                 identifier: "password",
                 hintText: "Password",
                 obscureText: true,
-                controller: controller.passwordController,
+                controller: authController.passwordController,
                 prefixIcon: Icons.lock,
                 suffixIcon: Icons.visibility_off,
               ),
@@ -95,10 +96,9 @@ class LoginPage extends StatelessWidget {
                 text: "Login",
                 color: Colors.blueGrey,
                 onTap: () {
-                  controller.login();
-                  if(onTap!=null){
-                    onTap!();
-                  }
+                  authController.loginUser();
+                  // authController.emailController.clear();
+                  // authController.passwordController.clear();
                 },
               ),
 
@@ -110,7 +110,7 @@ class LoginPage extends StatelessWidget {
                 children: [
                   Text("Don't have an account? "),
                   GestureDetector(
-                    onTap: () => Get.find<LoginOrRegisterController>().togglePages(),
+                    onTap: () => Get.toNamed('/registerpage'),
                     child: const Text(
                       "Register here",
                       style: TextStyle(

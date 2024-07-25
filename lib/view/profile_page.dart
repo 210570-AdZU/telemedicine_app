@@ -1,14 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:layout_design/components/my_textfield.dart';
-import 'package:layout_design/controllers/profile_controller.dart';
+import 'package:layout_design/controllers/auth_controller.dart';
 
 class ProfilePage extends StatelessWidget {
-  final ProfileController controller = Get.put(ProfileController());
+  final AuthController authController = Get.put(AuthController());
   ProfilePage({super.key});
 
   @override
   Widget build(BuildContext context) {
+    if (authController.currentUser.value != null) {
+      authController.initializeTextControllers(authController.currentUser.value!);
+    }
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
@@ -85,7 +88,7 @@ class ProfilePage extends StatelessWidget {
                 identifier: 'first name',
                 hintText: '    First name',
                 obscureText: false,
-                controller: controller.firstnameController,
+                controller: authController.fNameController,
               ),
               SizedBox(height: 12,),
                 Text(
@@ -100,11 +103,11 @@ class ProfilePage extends StatelessWidget {
                 identifier: 'middle name',
                 hintText: '    Middle name',
                 obscureText: false,
-                controller: controller.middlenameController,
+                controller: authController.mNameController,
               ),
               SizedBox(height: 12,),
                 Text(
-                  "Middle name",
+                  "Last name",
                   style: TextStyle(
                     fontSize: 16
                   ),
@@ -115,11 +118,11 @@ class ProfilePage extends StatelessWidget {
                 identifier: 'last name',
                 hintText: '    Last name',
                 obscureText: false,
-                controller: controller.lastnameController,
+                controller: authController.lNameController,
               ),
               SizedBox(height: 12,),
                 Text(
-                  "Middle name",
+                  "Extension name",
                   style: TextStyle(
                     fontSize: 16
                   ),
@@ -127,10 +130,10 @@ class ProfilePage extends StatelessWidget {
                 SizedBox(height: 8,),
                 MyTextfield(
                 isCollapsed: true,
-                identifier: 'first name',
-                hintText: '    First name',
+                identifier: 'extension name',
+                hintText: '    extension name',
                 obscureText: false,
-                controller: controller.firstnameController,
+                controller: authController.extensionNameController,
               ),
               SizedBox(height: 12,),
                 Row(
@@ -146,20 +149,6 @@ class ProfilePage extends StatelessWidget {
                     IconButton(onPressed: (){}, icon: Icon(Icons.edit_outlined, color: Colors.black45,)),
                   ],
                 ),
-                Text(
-                  "Phone number",
-                  style: TextStyle(
-                    fontSize: 16
-                  ),
-                ),
-                SizedBox(height: 8,),
-                MyTextfield(
-                isCollapsed: true,
-                identifier: 'phone number',
-                hintText: '    Phone number',
-                obscureText: false,
-                controller: controller.firstnameController,
-              ),
               SizedBox(height: 12,),
                 Text(
                   "Email address",
@@ -173,7 +162,25 @@ class ProfilePage extends StatelessWidget {
                 identifier: 'email address',
                 hintText: '    Email address',
                 obscureText: false,
-                controller: controller.middlenameController,
+                controller: authController.emailController,
+              ),
+                SizedBox(height: 20,),
+              Row(
+                children: [
+                  ElevatedButton(
+                    onPressed: () {
+                      authController.updateUser();
+                    },
+                    child: Text('Update Info'),
+                  ),
+                Spacer(),
+                ElevatedButton(
+                  onPressed: () {
+                    authController.deleteUser();
+                  },
+                  child: Text('Delete Account'),
+                ),
+                ],
               ),
               ],
             ),

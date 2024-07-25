@@ -5,17 +5,16 @@ import 'package:flutter/widgets.dart';
 import '../components/register_dropdownselect.dart';
 import '../components/account_button.dart';
 import '../components/my_textfield.dart';
-import '../controllers/login_or_register_controller.dart';
-import '../controllers/register_controller.dart';
+import '../controllers/user_controller.dart';
 
 class RegisterPage extends StatelessWidget {
-  final RegisterController controller = Get.put(RegisterController());
+  final UserController userController = Get.put(UserController());
   final void Function()? onTap;
 
   // String emailRegex = r"[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0 -9](?:[a-zA-Z0-9-]*[a-zA-Z0-9])?\.[a-zA-Z]{2,}";
   RegisterPage({
     super.key,
-    required this.onTap,
+    this.onTap,
   });
 
   @override
@@ -64,7 +63,7 @@ class RegisterPage extends StatelessWidget {
                   identifier: "first name",
                   hintText: "Enter first name",
                   obscureText: false,
-                  controller: controller.firstnameController,
+                  controller: userController.fNameController,
                   prefixIcon: Icons.person,
                 ),
           
@@ -74,7 +73,7 @@ class RegisterPage extends StatelessWidget {
                   identifier: "middle name",
                   hintText: "Enter middle name",
                   obscureText: false,
-                  controller: controller.middlenameController,
+                  controller: userController.mNameController,
                   prefixIcon: Icons.person,
                 ),
           
@@ -84,7 +83,7 @@ class RegisterPage extends StatelessWidget {
                   identifier: "last name",
                   hintText: "Enter last name",
                   obscureText: false,
-                  controller: controller.lastnameController,
+                  controller: userController.lNameController,
                   prefixIcon: Icons.person,
                 ),
           
@@ -94,7 +93,7 @@ class RegisterPage extends StatelessWidget {
                   identifier: "extension name",
                   hintText: "Enter extension name",
                   obscureText: false,
-                  controller: controller.extensionnameController,
+                  controller: userController.extensionNameController,
                   prefixIcon: Icons.person,
                 ),
 
@@ -129,7 +128,7 @@ class RegisterPage extends StatelessWidget {
                   identifier: "email",
                   hintText: "Email",
                   obscureText: false,
-                  controller: controller.emailController,
+                  controller: userController.emailController,
                   prefixIcon: Icons.mail,
                 ),
           
@@ -139,7 +138,7 @@ class RegisterPage extends StatelessWidget {
                   identifier: "password",
                   hintText: "Password",
                   obscureText: true,
-                  controller: controller.passwordController,
+                  controller: userController.passwordController,
                   prefixIcon: Icons.lock,
                   suffixIcon: Icons.visibility_off,
                 ),
@@ -153,7 +152,7 @@ class RegisterPage extends StatelessWidget {
                   obscureText: true,
                   controller: TextEditingController(),
                   ConfirmPwd: true,
-                  passwordController: controller.passwordController,
+                  passwordController: userController.passwordController,
                   prefixIcon: Icons.lock,
                   suffixIcon: Icons.visibility_off,
                 ),
@@ -164,14 +163,14 @@ class RegisterPage extends StatelessWidget {
                 AccountButton(
                   text: "Submit",
                   color: Colors.blueGrey,
-                  onTap: () => controller.register(),
+                  onTap: () => userController.registerUser(),
                 ),
           
                 SizedBox(height: 20,),
 
                 AccountButton(
                   text: "Back",
-                  onTap: ()=> Get.find<LoginOrRegisterController>().togglePages(),
+                  onTap: ()=> Get.toNamed('/loginpage'),
                   color: const Color.fromARGB(255, 222, 222, 222),
                   initialTextColor: Colors.blueGrey,
                 ),

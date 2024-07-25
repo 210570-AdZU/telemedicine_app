@@ -6,17 +6,24 @@ import 'package:layout_design/view/case_view.dart';
 import 'package:layout_design/view/chat_room.dart';
 import 'package:layout_design/view/doctor_page.dart';
 import 'package:layout_design/view/first_page.dart';
+import 'package:layout_design/view/login_page.dart';
 import 'package:layout_design/view/menu_page.dart';
 import 'package:layout_design/view/patient_page.dart';
 import 'package:layout_design/view/register_case_page.dart';
+import 'package:layout_design/view/register_page.dart';
+import 'package:sqflite_common_ffi/sqflite_ffi.dart';
 
 void main() {
+  sqfliteFfiInit();
+  databaseFactory = databaseFactoryFfi;
   runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
   final routes = [
     GetPage(name: '/', page: () => LoginOrRegister()),
+    GetPage(name: '/loginpage', page: () => LoginPage()),
+    GetPage(name: '/registerpage', page: () => RegisterPage()),
     GetPage(name: '/firstpage', page: () => FirstPage()),
     GetPage(name: '/doctorpage', page: () => DoctorPage()),
     GetPage(name: '/patientpage', page: () => PatientPage()),

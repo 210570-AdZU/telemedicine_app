@@ -296,7 +296,7 @@ class CaseView extends StatelessWidget {
                 children: [
                   CaseMidBox(onTap: (){}, detail: "Heart Rate", icon: Icons.monitor_heart, iconColor: Colors.red,),
                   SizedBox(width: 8,),
-                  CaseMidBox(onTap: (){}, detail: "Bloob Pressure", icon: Icons.bloodtype, iconColor: Colors.red,),
+                  CaseMidBox(onTap: (){}, detail: "Blood Pressure", icon: Icons.bloodtype, iconColor: Colors.red,),
                 ],
               ),
               SizedBox(height: 16,),

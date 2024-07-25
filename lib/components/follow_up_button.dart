@@ -48,7 +48,7 @@ class _FollowUpButtonState extends State<FollowUpButton> {
                 ),
                 SizedBox(width: 8),
                 Text(
-                  "Admin",
+                  "Follow Up",
                   style: TextStyle(
                     color: Colors.white,
                     fontSize: 16,
