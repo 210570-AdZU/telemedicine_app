@@ -9,8 +9,8 @@ class ProfilePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    if (authController.currentUser.value != null) {
-      authController.initializeTextControllers(authController.currentUser.value!);
+    if (authController.currentProfile.value != null) {
+      authController.initializeTextControllers(authController.currentProfile.value!);
     }
     return Scaffold(
       appBar: AppBar(
@@ -169,14 +169,14 @@ class ProfilePage extends StatelessWidget {
                 children: [
                   ElevatedButton(
                     onPressed: () {
-                      authController.updateUser();
+                      authController.updateProfile();
                     },
                     child: Text('Update Info'),
                   ),
                 Spacer(),
                 ElevatedButton(
                   onPressed: () {
-                    authController.deleteUser();
+                    authController.deleteProfile();
                   },
                   child: Text('Delete Account'),
                 ),

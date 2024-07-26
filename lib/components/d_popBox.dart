@@ -3,14 +3,20 @@ import 'package:layout_design/components/d_popButton.dart';
 
 class DPopbox extends StatefulWidget {
   final Color initialRingcolor;
-  final String titleNum;
+  final String accountName;
+  final String hospital;
+  final String specialization;
+  final void Function()? onPressed;
   bool accepted;
 
   DPopbox({
     Key? key,
     this.initialRingcolor = const Color.fromARGB(255, 225, 225, 225),
-    required this.titleNum,
+    required this.accountName,
+    required this.hospital,
+    required this.specialization,
     this.accepted = false,
+    this.onPressed
   }) : super(key: key);
 
   @override
@@ -70,21 +76,25 @@ class _DPopboxState extends State<DPopbox> {
                         ),
                         SizedBox(height: MediaQuery.of(context).size.width * 0.018,),
                         Text(
-                          widget.titleNum,
+                          textAlign: TextAlign.center,
+                          widget.accountName,
                           style: TextStyle(
-                            fontWeight: FontWeight.bold, fontSize: MediaQuery.of(context).size.width * 0.032
+                            fontWeight: FontWeight.bold,
+                            fontSize: MediaQuery.of(context).size.width * 0.032
                           ),
                         ),
-                        SizedBox(height: MediaQuery.of(context).size.width * 0.02,),
+                        Spacer(),
                         Text(
-                          "Internal Medicine",
+                          textAlign: TextAlign.center,
+                          widget.specialization,
                           style: TextStyle(fontSize: MediaQuery.of(context).size.width * 0.029),
                         ),
                         Text(
-                          "Alicia District Hospital",
+                          textAlign: TextAlign.center,
+                          widget.hospital,
                           style: TextStyle(fontSize: MediaQuery.of(context).size.width * 0.029),
                         ),
-                        SizedBox(height: MediaQuery.of(context).size.width * 0.048,),
+                        Spacer(),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
@@ -95,7 +105,7 @@ class _DPopboxState extends State<DPopbox> {
                             Icon(Icons.local_hospital, color: Colors.teal, size: MediaQuery.of(context).size.width * 0.046),
                           ],
                         ),
-                        SizedBox(height: MediaQuery.of(context).size.width * 0.052,),
+                        SizedBox(height: MediaQuery.of(context).size.width * 0.05,),
                         DPopbutton(text: "View Profile", onTap: changeColor, color: Colors.blueGrey),
                       ],
                     ),
@@ -108,11 +118,31 @@ class _DPopboxState extends State<DPopbox> {
         Positioned(
           top: 10,
           right: 10,
-          child: Icon(
-            Icons.more_vert,
-            size: MediaQuery.of(context).size.width * 0.06,
-            color: Colors.grey,
-          ),
+          child: PopupMenuButton(
+            icon: Icon(
+              Icons.more_vert,
+              size: MediaQuery.of(context).size.width * 0.045,
+            ),
+            itemBuilder: (BuildContext context) => <PopupMenuEntry<int>>[
+              PopupMenuItem<int>(
+                value: 1,
+                child: Row(
+                  children: [
+                    IconButton(
+                      onPressed: widget.onPressed,
+                      icon: Icon(
+                        Icons.delete,
+                        color: Colors.black45,
+                        size: MediaQuery.of(context).size.width * 0.025,
+                      ),
+                    ),
+                    SizedBox(width: 10),
+                    Text('Delete this account'),
+                  ],
+                ),
+              ),
+            ]
+          )
         ),
       ],
     );

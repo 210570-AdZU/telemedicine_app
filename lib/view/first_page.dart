@@ -16,7 +16,7 @@ class FirstPage extends StatelessWidget {
             Container(width: 32, child: Image.asset('lib/assets/images/Removal-432.png')),
             SizedBox(width: MediaQuery.of(context).size.width * 0.02,),
             Column(
-              crossAxisAlignment: CrossAxisAlignment.start, // Align text to the start
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
                   'TELEMEDICINE',
@@ -40,14 +40,17 @@ class FirstPage extends StatelessWidget {
         ),
         actions: <Widget>[
           IconButton(
-            iconSize: 20, // Adjust iconSize as needed
+            iconSize: 26,
             icon: Stack(
-              clipBehavior: Clip.none, // Allow items to overflow outside Stack boundaries
+              clipBehavior: Clip.none, 
               children: [
-                Icon(Icons.message_outlined),
+                Icon(
+                  Icons.message_outlined,
+                  color: Colors.blueGrey,
+                ),
                 Positioned(
-                  top: -4, // Adjust top position to bring the CircleAvatar upward
-                  right: -10, // Adjust right position to bring the CircleAvatar rightward
+                  top: -4,
+                  right: -10,
                   child: CircleAvatar(
                     radius: 10,
                     backgroundColor: Colors.blueGrey,
@@ -67,17 +70,17 @@ class FirstPage extends StatelessWidget {
             },
           ),
           IconButton(
-            iconSize: 28, // Adjust iconSize as needed
+            iconSize: 32,
             icon: Stack(
-              clipBehavior: Clip.none, // Allow items to overflow outside Stack boundaries
+              clipBehavior: Clip.none,
               children: [
                 Icon(
                   Icons.notifications_outlined,
                   color: Colors.orange,
                 ),
                 Positioned(
-                  top: 0, // Adjust top position to bring the CircleAvatar upward
-                  right: -8, // Adjust right position to bring the CircleAvatar rightward
+                  top: 0,
+                  right: -8,
                   child: CircleAvatar(
                     radius: 10,
                     backgroundColor: Colors.orange,

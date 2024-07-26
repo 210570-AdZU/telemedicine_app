@@ -9,8 +9,8 @@ class ChangePasswordPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    if (authController.currentUser.value != null) {
-      authController.initializeTextControllers(authController.currentUser.value!);
+    if (authController.currentProfile.value != null) {
+      authController.initializeTextControllers(authController.currentProfile.value!);
     }
     return Scaffold(
       appBar: AppBar(
@@ -87,13 +87,13 @@ class ChangePasswordPage extends StatelessWidget {
                 isCollapsed: true,
                 identifier: 'password',
                 hintText: '    password',
-                obscureText: false,
+                obscureText: true,
                 controller: authController.passwordController,
               ),
               SizedBox(height: 20,),
               ElevatedButton(
                 onPressed: () {
-                  authController.updateUser();
+                  authController.updateProfile();
                 },
                 child: Text('Update Info'),
               ),

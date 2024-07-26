@@ -1,5 +1,6 @@
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
+import 'package:layout_design/components/call_button.dart';
 import 'package:layout_design/components/case_end_box.dart';
 import 'package:layout_design/components/case_head_box.dart';
 import 'package:layout_design/components/case_mid_box.dart';
@@ -15,7 +16,24 @@ class CaseView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      floatingActionButton: FollowUpButton(),
+      floatingActionButton: Stack(
+        children: [
+          Align(
+            alignment: Alignment.bottomRight,
+            child: Padding(
+              padding: const EdgeInsets.only(bottom: 72.0, right: 0.0), // Adjust for spacing
+              child: CallButton(),
+            ),
+          ),
+          Align(
+            alignment: Alignment.bottomRight,
+            child: Padding(
+              padding: const EdgeInsets.only(bottom: 16.0, right: 0.0), // Adjust for spacing
+              child: FollowUpButton(),
+            ),
+          ),
+        ],
+      ),
       appBar: AppBar(
         title: Center(
           child: Text(

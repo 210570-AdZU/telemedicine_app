@@ -3,10 +3,10 @@ import 'package:get/get.dart';
 import 'package:layout_design/components/d_popBox.dart';
 import 'package:layout_design/components/home_dropdownselect.dart';
 import 'package:layout_design/components/my_searchbar.dart';
-import 'package:layout_design/controllers/doctor_controller.dart';
+import 'package:layout_design/controllers/profile_list_controller.dart';
 import '../components/addmin_button.dart';
 class DoctorPage extends StatefulWidget {
-  final DoctorController controller = Get.put(DoctorController());
+  final ProfileListController profileListController = Get.put(ProfileListController());
   DoctorPage({Key? key}) : super(key: key);
 
   @override
@@ -14,7 +14,7 @@ class DoctorPage extends StatefulWidget {
 }
 
 class _DoctorPageState extends State<DoctorPage> {
-  final DoctorController controller = Get.put(DoctorController());
+  final ProfileListController profileListController = Get.put(ProfileListController());
 
   @override
   Widget build(BuildContext context) {
@@ -43,7 +43,7 @@ class _DoctorPageState extends State<DoctorPage> {
             SizedBox(height: MediaQuery.of(context).size.height * 0.037,),
             Expanded(
               child: Obx(() => GridView.builder(
-                itemCount: controller.dummyData.length,
+                itemCount: profileListController.profiles.length,
                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 2,
                   childAspectRatio: 0.712,
@@ -51,9 +51,13 @@ class _DoctorPageState extends State<DoctorPage> {
                   crossAxisSpacing: 8.0,
                 ),
                 itemBuilder: (context, index) {
+                  final profile = profileListController.profiles[index];
                   return DPopbox(
                     initialRingcolor: const Color.fromARGB(255, 225, 225, 225),
-                    titleNum: controller.dummyData[index],
+                    accountName: profile.fName + ' ' + profile.mName + ' ' + profile.lName,
+                    hospital: profile.hospital,
+                    specialization: profile.specialization,
+                    onPressed: ()=>{profileListController.deleteProfile(profile.id!)},
                   );
                 },
               )),

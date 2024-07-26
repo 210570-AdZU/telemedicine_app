@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-class FollowUpButton extends StatefulWidget {
-  FollowUpButton({super.key});
+class CallButton extends StatefulWidget {
+  CallButton({super.key});
 
   @override
-  State<FollowUpButton> createState() => _FollowUpButtonState();
+  State<CallButton> createState() => _CallButtonState();
 }
 
-class _FollowUpButtonState extends State<FollowUpButton> {
+class _CallButtonState extends State<CallButton> {
 
   @override
   Widget build(BuildContext context) {
@@ -40,7 +40,7 @@ class _FollowUpButtonState extends State<FollowUpButton> {
                   ),
                   child: Center(
                     child: Icon(
-                      Icons.chat_sharp,
+                      Icons.call,
                       size: 18,
                       color: Colors.blueGrey,
                     ),
@@ -48,7 +48,7 @@ class _FollowUpButtonState extends State<FollowUpButton> {
                 ),
                 SizedBox(width: 8),
                 Text(
-                  "Follow Up",
+                  "Call",
                   style: TextStyle(
                     color: Colors.white,
                     fontSize: 16,

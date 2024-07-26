@@ -4,15 +4,17 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:layout_design/components/account_button.dart';
 import 'package:layout_design/components/register_dropdownselect.dart';
+import 'package:layout_design/controllers/profile_list_controller.dart';
 import '../components/my_textfield.dart';
 import '../controllers/profile_controller.dart';
 
-class RegisterPage extends StatelessWidget {
+class RegisterNew extends StatelessWidget {
   final ProfileController profileController = Get.put(ProfileController());
+  final ProfileListController profileListController = Get.put(ProfileListController());
   final void Function()? onTap;
 
   // String emailRegex = r"[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0 -9](?:[a-zA-Z0-9-]*[a-zA-Z0-9])?\.[a-zA-Z]{2,}";
-  RegisterPage({
+  RegisterNew({
     super.key,
     this.onTap,
   });
@@ -43,14 +45,14 @@ class RegisterPage extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        'Sign Up', style: TextStyle(
+                        'Add New Account', style: TextStyle(
                           fontSize: 20,
                           fontWeight: FontWeight.bold,
                           color: Colors.teal
                           ),
                         textAlign: TextAlign.left,
                         ),
-                      Text('Enter your credentials to continue', style: TextStyle(fontSize: 11),)
+                      Text('Enter credentials to continue', style: TextStyle(fontSize: 11),)
                     ],
                   ),
                 ),
@@ -171,10 +173,10 @@ class RegisterPage extends StatelessWidget {
                 AccountButton(
                   text: "Submit",
                   color: Colors.blueGrey,
-                  onTap: (){
+                  onTap: () {
                     profileController.registerProfile();
-                    Get.toNamed('/loginpage');
-                    },
+                    profileListController.loadProfiles();
+                  },
                 ),
           
                 SizedBox(height: 20,),

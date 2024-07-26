@@ -10,12 +10,10 @@ import 'package:layout_design/view/login_page.dart';
 import 'package:layout_design/view/menu_page.dart';
 import 'package:layout_design/view/patient_page.dart';
 import 'package:layout_design/view/register_case_page.dart';
+import 'package:layout_design/view/register_new.dart';
 import 'package:layout_design/view/register_page.dart';
-import 'package:sqflite_common_ffi/sqflite_ffi.dart';
 
 void main() {
-  sqfliteFfiInit();
-  databaseFactory = databaseFactoryFfi;
   runApp(MyApp());
 }
 
@@ -32,6 +30,7 @@ class MyApp extends StatelessWidget {
     GetPage(name: '/menupage', page: () => MenuPage()),
     GetPage(name: '/registercasepage', page: () => RegisterCasePage()),
     GetPage(name: '/chatroom', page: () => ChatRoom()),
+    GetPage(name: '/registernew', page: () => RegisterNew()),
   ];
   MyApp({super.key});
 

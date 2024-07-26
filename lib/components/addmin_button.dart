@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:layout_design/controllers/doctor_controller.dart';
 class AddminButton extends StatefulWidget {
   AddminButton({Key? key});
 
@@ -9,17 +8,13 @@ class AddminButton extends StatefulWidget {
 }
 
 class _ButtonState extends State<AddminButton> {
-  final DoctorController controller = Get.put(DoctorController());
 
   bool isHovered = false;
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {
-        controller.maxItemCount.value++;
-        controller.addItem("Dennis Clone #" + controller.maxItemCount.obs.string);
-      },
+      onTap: () => Get.toNamed('/registernew'),
       child: MouseRegion(
         onEnter: (_) {
           setState(() {

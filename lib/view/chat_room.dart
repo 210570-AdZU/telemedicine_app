@@ -1,6 +1,5 @@
 import 'dart:async';
 import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:grouped_list/grouped_list.dart';
@@ -41,19 +40,6 @@ class ChatRoom extends StatelessWidget {
                     message.date.day,
                   ),
                   groupHeaderBuilder: (model.Message message) => SizedBox(
-                    height: 40,
-                    child: Center(
-                      child: Card(
-                        color: Colors.blueGrey,
-                        child: Padding(
-                          padding: EdgeInsets.all(8),
-                          child: Text(
-                            DateFormat.yMMMd().format(message.date),
-                            style: TextStyle(color: Colors.white),
-                          ),
-                        ),
-                      ),
-                    ),
                   ),
                   itemBuilder: (context, model.Message message) {
                     if (message.file != null) {

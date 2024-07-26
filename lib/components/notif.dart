@@ -41,6 +41,7 @@ class _NotifState extends State<Notif> {
                     Text(
                       "New Account",
                       style: TextStyle(
+                        fontSize: 15,
                         fontWeight: FontWeight.bold,
                         color: Colors.black54
                       ),
@@ -49,7 +50,7 @@ class _NotifState extends State<Notif> {
                     Text(
                       "7 days ago\n",
                       style: TextStyle(
-                        fontSize: 10
+                        fontSize: 11
                       ),
                     )
                   ],

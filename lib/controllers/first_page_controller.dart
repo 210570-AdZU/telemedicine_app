@@ -46,7 +46,7 @@ class FirstPageController extends GetxController {
             elevation: 4.0,
             child: Container(
               width: screenWidth * 0.8,
-              height: screenHeight * 0.435,
+              height: screenHeight * 0.45,
               child: Scaffold(
                 backgroundColor: Colors.transparent,
                 body: Column(
@@ -59,7 +59,7 @@ class FirstPageController extends GetxController {
                           Text(
                             "Notifications",
                             style: TextStyle(
-                              fontSize: 18,
+                              fontSize: 22,
                               fontWeight: FontWeight.bold,
                               color: Colors.blueGrey,
                             ),
@@ -84,6 +84,8 @@ class FirstPageController extends GetxController {
                         },
                       ),
                     ),
+                    Divider(),
+                    Text('', style: TextStyle(fontSize: 4),)
                   ],
                 ),
               ),
@@ -106,8 +108,8 @@ class FirstPageController extends GetxController {
             borderRadius: BorderRadius.circular(12),
             elevation: 4.0,
             child: Container(
-              width: screenWidth * 0.9125,
-              height: screenHeight * 0.72,
+              width: screenWidth * 0.925,
+              height: screenHeight * 0.73,
               child: Scaffold(
                 backgroundColor: Colors.transparent,
                 body: Column(
@@ -120,7 +122,7 @@ class FirstPageController extends GetxController {
                           Text(
                             "Chats",
                             style: TextStyle(
-                              fontSize: 22,
+                              fontSize: 23,
                               fontWeight: FontWeight.bold,
                               color: Colors.blueGrey,
                             ),
@@ -159,6 +161,7 @@ class FirstPageController extends GetxController {
                         itemBuilder: (context, index) {
                           return Column(
                             children: [
+                              SizedBox(height: 4,),
                               MessageNotif(),
                               Divider(
                                 height: 0,

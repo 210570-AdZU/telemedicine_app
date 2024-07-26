@@ -51,11 +51,30 @@ class RegisterCasePage extends StatelessWidget {
 
                 SizedBox(height: 8,),
 
-                RegisterDropdownselect(
-                  selectList: const [
+                DropdownButtonFormField<String>(
+                  isExpanded: true,
+                  decoration: InputDecoration(
+                    isDense: true,
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(10.0),
+                      borderSide: BorderSide(color: Colors.blue, width: 2.0),
+                    ),
+                    contentPadding: EdgeInsets.symmetric(vertical: 8.0),
+                  ),
+                  onChanged: (String? newValue) {
+                    // if (newValue != null) {
+                    // }
+                  },
+                  items: <String>[
                     '(None)',
-                    'Test',
-                  ],
+                    'Test'
+                  ]
+                      .map<DropdownMenuItem<String>>((String value) {
+                    return DropdownMenuItem<String>(
+                      value: value,
+                      child: Text(value),
+                    );
+                  }).toList(),
                 ),
 
                 SizedBox(height: 6,),
@@ -69,11 +88,30 @@ class RegisterCasePage extends StatelessWidget {
 
                 SizedBox(height: 6,),
 
-                RegisterDropdownselect(
-                  selectList: const [
+                DropdownButtonFormField<String>(
+                  isExpanded: true,
+                  decoration: InputDecoration(
+                    isDense: true,
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(10.0),
+                      borderSide: BorderSide(color: Colors.blue, width: 2.0),
+                    ),
+                    contentPadding: EdgeInsets.symmetric(vertical: 8.0),
+                  ),
+                  onChanged: (String? newValue) {
+                    // if (newValue != null) {
+                    // }
+                  },
+                  items: <String>[
                     '(None)',
-                    'Test',
-                  ],
+                    'Test'
+                  ]
+                      .map<DropdownMenuItem<String>>((String value) {
+                    return DropdownMenuItem<String>(
+                      value: value,
+                      child: Text(value),
+                    );
+                  }).toList(),
                 ),
 
                 SizedBox(height: 20,),

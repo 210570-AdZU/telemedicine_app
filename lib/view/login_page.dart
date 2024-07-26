@@ -96,7 +96,7 @@ class LoginPage extends StatelessWidget {
                 text: "Login",
                 color: Colors.blueGrey,
                 onTap: () {
-                  authController.loginUser();
+                  authController.loginProfile();
                   // authController.emailController.clear();
                   // authController.passwordController.clear();
                 },

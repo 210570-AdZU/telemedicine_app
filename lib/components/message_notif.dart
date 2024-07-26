@@ -42,7 +42,7 @@ class _MessageNotifState extends State<MessageNotif> {
               children: [
                 CircleAvatar(
                   backgroundColor: Colors.black54,
-                  radius: 24,
+                  radius: 25,
                   child: Stack(
                     children: [
                       Center(
@@ -83,7 +83,7 @@ class _MessageNotifState extends State<MessageNotif> {
                       Text(
                         "Tristan Jay Amit",
                         style: TextStyle(
-                          fontSize: 16,
+                          fontSize: 17,
                           fontWeight: FontWeight.bold,
                           color: Colors.black54
                         ),

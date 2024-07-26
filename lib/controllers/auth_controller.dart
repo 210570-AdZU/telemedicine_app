@@ -1,8 +1,8 @@
 // lib/controllers/auth_controller.dart
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
-import 'package:layout_design/models/user.dart';
-import 'package:layout_design/helpers/user_database.dart';
+import 'package:layout_design/models/profile.dart';
+import 'package:layout_design/helpers/profile_database.dart';
 
 class AuthController extends GetxController {
   var fNameController = TextEditingController();
@@ -12,40 +12,40 @@ class AuthController extends GetxController {
   var emailController = TextEditingController();
   var passwordController = TextEditingController();
 
-  Rx<User?> currentUser = Rx<User?>(null);
+  Rx<Profile?> currentProfile = Rx<Profile?>(null);
   
   @override
   void onInit() {
     super.onInit();
-    ever(currentUser, (user) {
-      if (user != null) {
-        initializeTextControllers(user);
+    ever(currentProfile, (profile) {
+      if (profile != null) {
+        initializeTextControllers(profile);
       }
     });
   }
 
-  void initializeTextControllers(User user) {
-    fNameController.text = user.fName;
-    mNameController.text = user.mName;
-    lNameController.text = user.lName;
-    extensionNameController.text = user.extensionName;
-    emailController.text = user.email;
-    passwordController.text = user.password;
+  void initializeTextControllers(Profile profile) {
+    fNameController.text = profile.fName;
+    mNameController.text = profile.mName;
+    lNameController.text = profile.lName;
+    extensionNameController.text = profile.extensionName;
+    emailController.text = profile.email;
+    passwordController.text = profile.password;
   }
 
-  Future<void> loginUser() async {
+  Future<void> loginProfile() async {
     String email = emailController.text;
     String password = passwordController.text;
 
-    final db = await UserDatabase().database;
-    List<Map<String, dynamic>> users = await db.query(
-      'users',
+    final db = await ProfileDatabase().database;
+    List<Map<String, dynamic>> profiles = await db.query(
+      'profiles',
       where: 'email = ? AND password = ?',
       whereArgs: [email, password],
     );
 
-    if (users.isNotEmpty) {
-      currentUser.value = User.fromMap(users.first);
+    if (profiles.isNotEmpty) {
+      currentProfile.value = Profile.fromMap(profiles.first);
       Get.snackbar('Success', 'Logged in successfully');
       Get.toNamed('/firstpage');
     } else {
@@ -54,7 +54,7 @@ class AuthController extends GetxController {
   }
 
   void logout() {
-    currentUser.value = null;
+    currentProfile.value = null;
     fNameController.clear();
     mNameController.clear();
     lNameController.clear();
@@ -64,42 +64,44 @@ class AuthController extends GetxController {
     Get.toNamed('/loginpage');
   }
 
-  Future<void> updateUser() async {
-    if (currentUser.value != null) {
-      final user = User(
-        id: currentUser.value!.id,
+  Future<void> updateProfile() async {
+    if (currentProfile.value != null) {
+      final profile = Profile(
+        id: currentProfile.value!.id,
         fName: fNameController.text,
         mName: mNameController.text,
         lName: lNameController.text,
         extensionName: extensionNameController.text,
         email: emailController.text,
         password: passwordController.text,
+        hospital: currentProfile.value!.hospital,
+        specialization: currentProfile.value!.specialization,
       );
 
-      final db = await UserDatabase().database;
+      final db = await ProfileDatabase().database;
       await db.update(
-        'users',
-        user.toMap(),
+        'profiles',
+        profile.toMap(),
         where: 'id = ?',
-        whereArgs: [user.id],
+        whereArgs: [profile.id],
       );
 
-      currentUser.value = user;
-      Get.snackbar('Success', 'User info updated successfully');
+      currentProfile.value = profile;
+      Get.snackbar('Success', 'Profile info updated successfully');
     }
   }
 
-  Future<void> deleteUser() async {
-    if (currentUser.value != null) {
-      final db = await UserDatabase().database;
+  Future<void> deleteProfile() async {
+    if (currentProfile.value != null) {
+      final db = await ProfileDatabase().database;
       await db.delete(
-        'users',
+        'profiles',
         where: 'id = ?',
-        whereArgs: [currentUser.value!.id],
+        whereArgs: [currentProfile.value!.id],
       );
 
       logout();
-      Get.snackbar('Success', 'User deleted successfully');
+      Get.snackbar('Success', 'Profile deleted successfully');
     }
   }
 }
