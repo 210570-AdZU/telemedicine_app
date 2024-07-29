@@ -29,8 +29,9 @@ class MenuPage extends StatelessWidget {
                         radius: MediaQuery.of(context).size.width * 0.072,
                         child: Center(
                           child: Text(
-                            authController.fNameController.text[0].toUpperCase() +
-                                authController.lNameController.text[0].toUpperCase(),
+                            authController.fNameController.text.isNotEmpty && authController.lNameController.text.isNotEmpty
+                            ? authController.fNameController.text[0].toUpperCase() + authController.lNameController.text[0].toUpperCase()
+                            : '',
                             style: TextStyle(fontSize: 20, color: Colors.white),
                           ),
                         ),

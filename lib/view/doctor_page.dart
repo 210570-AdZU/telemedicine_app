@@ -5,15 +5,10 @@ import 'package:layout_design/components/home_dropdownselect.dart';
 import 'package:layout_design/components/my_searchbar.dart';
 import 'package:layout_design/controllers/profile_list_controller.dart';
 import '../components/addmin_button.dart';
-class DoctorPage extends StatefulWidget {
-  final ProfileListController profileListController = Get.put(ProfileListController());
+class DoctorPage extends StatelessWidget {
+
   DoctorPage({Key? key}) : super(key: key);
 
-  @override
-  _DoctorPageState createState() => _DoctorPageState();
-}
-
-class _DoctorPageState extends State<DoctorPage> {
   final ProfileListController profileListController = Get.put(ProfileListController());
 
   @override
@@ -52,12 +47,14 @@ class _DoctorPageState extends State<DoctorPage> {
                 ),
                 itemBuilder: (context, index) {
                   final profile = profileListController.profiles[index];
+                  final hospital = profileListController.hospitals.firstWhere((h) => h.id == profile.hospitalId);
+                  final specialization = profileListController.specializations.firstWhere((s) => s.id == profile.specializationId);
                   return DPopbox(
                     initialRingcolor: const Color.fromARGB(255, 225, 225, 225),
                     accountName: profile.fName + ' ' + profile.mName + ' ' + profile.lName,
-                    hospital: profile.hospital,
-                    specialization: profile.specialization,
-                    onPressed: ()=>{profileListController.deleteProfile(profile.id!)},
+                    hospital: hospital.name,
+                    specialization: specialization.name,
+                    onPressed: (){profileListController.deleteProfile(profile.id!);},
                   );
                 },
               )),

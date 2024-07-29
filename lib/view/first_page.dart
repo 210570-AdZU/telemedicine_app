@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:layout_design/controllers/first_page_controller.dart';
+import 'package:layout_design/controllers/auth_controller.dart';
 
 class FirstPage extends StatelessWidget {
   // Create a controller to manage the state
   final FirstPageController controller = Get.put(FirstPageController());
+  final AuthController authController = Get.put(AuthController());
 
   @override
   Widget build(BuildContext context) {

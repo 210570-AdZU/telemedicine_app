@@ -1,3 +1,4 @@
+// lib/controllers/profile.dart
 class Profile {
   int? id;
   String fName;
@@ -6,8 +7,8 @@ class Profile {
   String extensionName;
   String email;
   String password;
-  String hospital;
-  String specialization;
+  int hospitalId;
+  int specializationId;
 
   Profile({
     this.id,
@@ -17,8 +18,8 @@ class Profile {
     required this.extensionName,
     required this.email,
     required this.password,
-    required this.hospital,
-    required this.specialization,
+    required this.hospitalId,
+    required this.specializationId,
   });
 
   // Convert a Profile into a Map. The keys must correspond to the column names in the database
@@ -31,20 +32,20 @@ class Profile {
       'extensionName': extensionName,
       'email': email,
       'password': password,
-      'hospital': hospital,
-      'specialization': specialization,
+      'hospitalId': hospitalId,
+      'specializationId': specializationId,
     };
   }
 
   // Extract a Profile object from a Map
   Profile.fromMap(Map<String, dynamic> map)
-      : id = map['id'],
-        fName = map['fName'],
-        mName = map['mName'],
-        lName = map['lName'],
-        extensionName = map['extensionName'],
-        email = map['email'],
-        password = map['password'],
-        hospital = map['hospital'],
-        specialization = map['specialization'];
+    : id = map['id'],
+      fName = map['fName'],
+      mName = map['mName'],
+      lName = map['lName'],
+      extensionName = map['extensionName'],
+      email = map['email'],
+      password = map['password'],
+      hospitalId = map['hospitalId'],
+      specializationId = map['specializationId'];
 }

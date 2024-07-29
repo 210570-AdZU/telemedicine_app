@@ -25,7 +25,6 @@ class RegisterDropdownselect extends StatelessWidget {
       onChanged: onChanged,
       items: items.map<DropdownMenuItem<String>>((String value) {
         return DropdownMenuItem<String>(
-          value: value,
           child: Text(value),
         );
       }).toList(),

@@ -3,8 +3,10 @@ import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import 'package:layout_design/models/profile.dart';
 import 'package:layout_design/helpers/profile_database.dart';
+import 'package:layout_design/controllers/profile_list_controller.dart';
 
 class AuthController extends GetxController {
+  final ProfileListController profileListController = Get.put(ProfileListController());
   var fNameController = TextEditingController();
   var mNameController = TextEditingController();
   var lNameController = TextEditingController();
@@ -47,6 +49,9 @@ class AuthController extends GetxController {
     if (profiles.isNotEmpty) {
       currentProfile.value = Profile.fromMap(profiles.first);
       Get.snackbar('Success', 'Logged in successfully');
+      profileListController.loadProfiles();
+      profileListController.loadHospitals();
+      profileListController.loadSpecializations();
       Get.toNamed('/firstpage');
     } else {
       Get.snackbar('Error', 'Invalid username or password');
@@ -74,8 +79,8 @@ class AuthController extends GetxController {
         extensionName: extensionNameController.text,
         email: emailController.text,
         password: passwordController.text,
-        hospital: currentProfile.value!.hospital,
-        specialization: currentProfile.value!.specialization,
+        hospitalId: currentProfile.value!.hospitalId,
+        specializationId: currentProfile.value!.specializationId,
       );
 
       final db = await ProfileDatabase().database;

@@ -105,7 +105,7 @@ class _DPopboxState extends State<DPopbox> {
                             Icon(Icons.local_hospital, color: Colors.teal, size: MediaQuery.of(context).size.width * 0.046),
                           ],
                         ),
-                        SizedBox(height: MediaQuery.of(context).size.width * 0.05,),
+                        SizedBox(height: MediaQuery.of(context).size.width * 0.04,),
                         DPopbutton(text: "View Profile", onTap: changeColor, color: Colors.blueGrey),
                       ],
                     ),
@@ -126,15 +126,13 @@ class _DPopboxState extends State<DPopbox> {
             itemBuilder: (BuildContext context) => <PopupMenuEntry<int>>[
               PopupMenuItem<int>(
                 value: 1,
+                onTap: widget.onPressed,
                 child: Row(
                   children: [
-                    IconButton(
-                      onPressed: widget.onPressed,
-                      icon: Icon(
-                        Icons.delete,
-                        color: Colors.black45,
-                        size: MediaQuery.of(context).size.width * 0.025,
-                      ),
+                    Icon(
+                      Icons.delete,
+                      color: Colors.black45,
+                      size: MediaQuery.of(context).size.width * 0.05,
                     ),
                     SizedBox(width: 10),
                     Text('Delete this account'),

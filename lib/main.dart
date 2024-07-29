@@ -9,6 +9,7 @@ import 'package:layout_design/view/first_page.dart';
 import 'package:layout_design/view/login_page.dart';
 import 'package:layout_design/view/menu_page.dart';
 import 'package:layout_design/view/patient_page.dart';
+import 'package:layout_design/view/recover_password_set.dart';
 import 'package:layout_design/view/register_case_page.dart';
 import 'package:layout_design/view/register_new.dart';
 import 'package:layout_design/view/register_page.dart';
@@ -31,6 +32,7 @@ class MyApp extends StatelessWidget {
     GetPage(name: '/registercasepage', page: () => RegisterCasePage()),
     GetPage(name: '/chatroom', page: () => ChatRoom()),
     GetPage(name: '/registernew', page: () => RegisterNew()),
+    GetPage(name: '/recoverpasswordset', page: () => RecoverPasswordSet()),
   ];
   MyApp({super.key});
 

@@ -101,36 +101,59 @@ class RegisterNew extends StatelessWidget {
 
                 SizedBox(height: 24,),
 
-                RegisterDropdownselect(
-                  onChanged: (String? newValue) {
-                      if (newValue != null) {
-                        profileController.selectedHospital.value = newValue;
+                Obx(() {
+                  return DropdownButtonFormField<int>(
+                    isExpanded: true,
+                    decoration: InputDecoration(
+                      isDense: true,
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10.0),
+                        borderSide: BorderSide(color: Colors.blue, width: 2.0),
+                      ),
+                      contentPadding: EdgeInsets.symmetric(vertical: 8.0, horizontal: 16),
+                    ),
+                    value: profileController.hospitalId.value,
+                    items: profileListController.hospitals.map((hospital) {
+                      return DropdownMenuItem<int>(
+                        value: hospital.id,
+                        child: Text(hospital.name),
+                      );
+                    }).toList(),
+                    onChanged: (value) {
+                      if (value != null) {
+                        profileController.hospitalId.value = value;
                       }
                     },
-                  items: <String>[
-                      'Brent Hospital and Colleges Inc.',
-                      'West Metro Medical Center',
-                      'Zamboanga City Medical Center (ZCMC)',
-                      'Zamboanga Peninsula Medical Center (ZamPen)',
-                    ]
-                ),
+                  );
+                }),
 
                 SizedBox(height: 24,),
 
-                RegisterDropdownselect(
-                  onChanged: (String? newValue) {
-                      if (newValue != null) {
-                        profileController.selectedSpecialization.value = newValue;
+                Obx(() {
+                  return DropdownButtonFormField<int>(
+                    isExpanded: true,
+                    decoration: InputDecoration(
+                      isDense: true,
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10.0),
+                        borderSide: BorderSide(color: Colors.blue, width: 2.0),
+                      ),
+                      contentPadding: EdgeInsets.symmetric(vertical: 8.0, horizontal: 16),
+                    ),
+                    value: profileController.specializationId.value,
+                    items: profileListController.specializations.map((specialization) {
+                      return DropdownMenuItem<int>(
+                        value: specialization.id,
+                        child: Text(specialization.name),
+                      );
+                    }).toList(),
+                    onChanged: (value) {
+                      if (value != null) {
+                        profileController.specializationId.value = value;
                       }
                     },
-                  items: <String>[
-                    'Anesthiology (ANES)',
-                    'Dermatology (DERM)', 
-                    'Obstetrics and Gynecology (OB/GYN)',
-                    'Pediatrics (PEDS)', 
-                    'Psychiatry (PSY)',
-                    ]
-                ),
+                  );
+                }),
           
                 SizedBox(height: 24,),
 

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import '../components/account_button.dart';
 import '../components/my_textfield.dart';
@@ -79,14 +80,14 @@ class LoginPage extends StatelessWidget {
               SizedBox(height: 24,),
 
               // Forgot password
-              const Padding(
-                padding: EdgeInsets.only(right: 18),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: [
-                    Text("Forgot Password?"),
-                  ],
-                ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  GestureDetector(
+                    child: Text("Forgot Password?"),
+                    onTap: () => Get.toNamed('/recoverpasswordset'),
+                  ),
+                ],
               ),
 
               SizedBox(height: 24,),
@@ -96,9 +97,15 @@ class LoginPage extends StatelessWidget {
                 text: "Login",
                 color: Colors.blueGrey,
                 onTap: () {
-                  authController.loginProfile();
-                  // authController.emailController.clear();
-                  // authController.passwordController.clear();
+                    if(authController.emailController.text.isEmpty
+                    || authController.passwordController.text.isEmpty){
+                      Get.snackbar('Blank username or password', 'Type in username and password');
+                    }
+                    else{
+                      authController.loginProfile();
+                      // authController.emailController.clear();
+                      // authController.passwordController.clear();
+                    }
                 },
               ),
 

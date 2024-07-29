@@ -1,4 +1,4 @@
-// lib/controllers/user_controller.dart
+// lib/controllers/profile_controller.dart
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import 'package:layout_design/models/profile.dart';
@@ -11,8 +11,8 @@ class ProfileController extends GetxController {
   var extensionNameController = TextEditingController();
   var emailController = TextEditingController();
   var passwordController = TextEditingController();
-  var selectedHospital = 'Select Hospital'.obs;
-  var selectedSpecialization = 'Select Specialization'.obs;
+  var hospitalId= 1.obs;
+  var specializationId = 1.obs;
 
 Future<void> registerProfile() async {
   try {
@@ -23,8 +23,8 @@ Future<void> registerProfile() async {
       extensionName: extensionNameController.text,
       email: emailController.text,
       password: passwordController.text,
-      hospital: selectedHospital.value,
-      specialization: selectedSpecialization.value,
+      hospitalId: hospitalId.value,
+      specializationId: specializationId.value,
     );
 
     final result = await ProfileDatabase().insertProfile(profile.toMap()); 
@@ -35,6 +35,8 @@ Future<void> registerProfile() async {
       extensionNameController.clear();
       emailController.clear();
       passwordController.clear();
+      hospitalId.value=1;
+      specializationId.value=1;
       Get.snackbar('Success', 'Profile registered successfully');
     } else {
       final profiles  = await ProfileDatabase().getProfiles();
