@@ -2,17 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:layout_design/controllers/recovery_controller.dart';
 import '../components/account_button.dart';
-import '../components/my_textfield.dart';
-import '../controllers/login_controller.dart';
-import 'package:layout_design/controllers/auth_controller.dart';
 
-class RecoverPasswordSet extends StatelessWidget {
-  final LoginController controller = Get.put(LoginController());
-  final AuthController authController = Get.put(AuthController());
+class RecoverPasswordConfirm extends StatelessWidget {
   final RecoveryController recoveryController = Get.put(RecoveryController());
   final Function()? onTap;
 
-  RecoverPasswordSet({
+  RecoverPasswordConfirm({
     super.key,
     this.onTap
   });
@@ -58,53 +53,38 @@ class RecoverPasswordSet extends StatelessWidget {
               SizedBox(height: 72,),
 
               // Forgot password
-              const Padding(
-                padding: EdgeInsets.only(right: 18),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text(
-                      "Set the new password and don't forget it",
-                      style: TextStyle(
-                        fontSize: 14
-                      ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  Text(
+                    "A code has been sent to your email. Enter the code\nto validate.",
+                    style: TextStyle(
+                      fontSize: 14
                     ),
-                  ],
-                ),
+                  ),
+                ],
               ),
 
-              SizedBox(height: 24,),
+              SizedBox(height: 32,),
 
-              // Email text field
-              MyTextfield(
-                identifier: "new password",
-                hintText: "New Password",
-                obscureText: true,
-                controller: recoveryController.newPasswordController,
-                prefixIcon: Icons.lock,
-                suffixIcon: Icons.visibility_off,
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: List.generate(6, (index) => _buildCodeField(index)),
               ),
 
-              SizedBox(height: 24,),
-
-              // Password text field
-              MyTextfield(
-                identifier: "password confirmation",
-                hintText: "Confirm Password",
-                obscureText: true,
-                controller: recoveryController.confirmPasswordController,
-                prefixIcon: Icons.lock,
-                suffixIcon: Icons.visibility_off,
-              ),
-
-              SizedBox(height: 24,),
+              SizedBox(height: 40,),
 
               // Login button
               AccountButton(
                 text: "Send Code",
                 color: Colors.blueGrey,
                 onTap: () {
-                  recoveryController.setPassword();
+                  recoveryController.codeController.text = recoveryController.codeFields.map((controller) => controller.text).join();
+                  if (recoveryController.validateCode()) {
+                    Get.toNamed('/recoverpasswordset');
+                  } else {
+                    Get.snackbar('Error', 'Invalid code');
+                  }
                 },
               ),
 
@@ -115,8 +95,6 @@ class RecoverPasswordSet extends StatelessWidget {
                 text: 'Back',
                 onTap: ()=>{
                   recoveryController.codeController.clear(),
-                  recoveryController.newPasswordController.clear(),
-                  recoveryController.confirmPasswordController.clear(),
                   Get.back(),
                 },
                 color: Colors.black26,
@@ -141,6 +119,34 @@ class RecoverPasswordSet extends StatelessWidget {
             ],
           ),
         ),
+      ),
+    );
+  }
+  Widget _buildCodeField(int index) {
+    return SizedBox(
+      width: 50,
+      height: 50,
+      child: TextField(
+        controller: recoveryController.codeFields[index],
+        focusNode: recoveryController.focusNodes[index],
+        keyboardType: TextInputType.number,
+        textAlign: TextAlign.center,
+        maxLength: 1,
+        decoration: InputDecoration(
+          contentPadding: EdgeInsets.only(bottom: 4),
+          counterText: "",
+        border: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(8),
+        )
+        ),
+        onChanged: (value) {
+          if (value.isNotEmpty && index < 5) {
+            FocusScope.of(Get.context!).requestFocus(recoveryController.focusNodes[index + 1]);
+          }
+          if (value.isEmpty && index > 0) {
+            FocusScope.of(Get.context!).requestFocus(recoveryController.focusNodes[index - 1]);
+          }
+        },
       ),
     );
   }

@@ -3,16 +3,12 @@ import 'package:get/get.dart';
 import 'package:layout_design/controllers/recovery_controller.dart';
 import '../components/account_button.dart';
 import '../components/my_textfield.dart';
-import '../controllers/login_controller.dart';
-import 'package:layout_design/controllers/auth_controller.dart';
 
-class RecoverPasswordSet extends StatelessWidget {
-  final LoginController controller = Get.put(LoginController());
-  final AuthController authController = Get.put(AuthController());
+class RecoverPasswordEmail extends StatelessWidget {
   final RecoveryController recoveryController = Get.put(RecoveryController());
   final Function()? onTap;
 
-  RecoverPasswordSet({
+  RecoverPasswordEmail({
     super.key,
     this.onTap
   });
@@ -59,12 +55,16 @@ class RecoverPasswordSet extends StatelessWidget {
 
               // Forgot password
               const Padding(
-                padding: EdgeInsets.only(right: 18),
+                padding: EdgeInsets.only(right: 12),
                 child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     Text(
-                      "Set the new password and don't forget it",
+                      "A recovery link will be sent to the email binded to your\naccount."
+                      " Upon submitting, open your Gmail app on your\nphone or sign in to"
+                      " your Gmail account in Google Chrome\nand check your inbox for the"
+                      "recovery link. Click the link\n and it will redirect to a page to"
+                      "change your account\npassword.",
                       style: TextStyle(
                         fontSize: 14
                       ),
@@ -77,34 +77,20 @@ class RecoverPasswordSet extends StatelessWidget {
 
               // Email text field
               MyTextfield(
-                identifier: "new password",
-                hintText: "New Password",
-                obscureText: true,
-                controller: recoveryController.newPasswordController,
-                prefixIcon: Icons.lock,
-                suffixIcon: Icons.visibility_off,
+                identifier: "email",
+                hintText: "Email",
+                obscureText: false,
+                controller: recoveryController.emailController,
+                prefixIcon: Icons.email,
               ),
 
               SizedBox(height: 24,),
-
-              // Password text field
-              MyTextfield(
-                identifier: "password confirmation",
-                hintText: "Confirm Password",
-                obscureText: true,
-                controller: recoveryController.confirmPasswordController,
-                prefixIcon: Icons.lock,
-                suffixIcon: Icons.visibility_off,
-              ),
-
-              SizedBox(height: 24,),
-
               // Login button
               AccountButton(
                 text: "Send Code",
                 color: Colors.blueGrey,
                 onTap: () {
-                  recoveryController.setPassword();
+                  recoveryController.sendCode();
                 },
               ),
 
@@ -114,9 +100,7 @@ class RecoverPasswordSet extends StatelessWidget {
               AccountButton(
                 text: 'Back',
                 onTap: ()=>{
-                  recoveryController.codeController.clear(),
-                  recoveryController.newPasswordController.clear(),
-                  recoveryController.confirmPasswordController.clear(),
+                  recoveryController.emailController.clear(),
                   Get.back(),
                 },
                 color: Colors.black26,

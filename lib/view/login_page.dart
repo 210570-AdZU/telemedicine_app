@@ -85,7 +85,7 @@ class LoginPage extends StatelessWidget {
                 children: [
                   GestureDetector(
                     child: Text("Forgot Password?"),
-                    onTap: () => Get.toNamed('/recoverpasswordset'),
+                    onTap: () => Get.toNamed('/recoverpasswordemail'),
                   ),
                 ],
               ),
