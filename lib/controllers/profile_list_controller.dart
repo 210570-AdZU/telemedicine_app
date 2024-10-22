@@ -7,8 +7,20 @@ import 'package:layout_design/models/specialization.dart';
 
 class ProfileListController extends GetxController {
   var profiles = <Profile>[].obs;
+  var filteredProfiles = <Profile>[].obs;
   var hospitals = <Hospital>[].obs;
   var specializations = <Specialization>[].obs;
+
+  void filterProfiles(String searchText) {
+    if (searchText.isEmpty) {
+      filteredProfiles.value = profiles;
+    } else {
+      filteredProfiles.value = profiles.where((profile) {
+        final fullName = '${profile.fName} ${profile.mName} ${profile.lName}'.toLowerCase();
+        return fullName.contains(searchText.toLowerCase());
+      }).toList();
+    }
+  }
 
   @override
   void onInit() {
@@ -16,6 +28,7 @@ class ProfileListController extends GetxController {
     loadProfiles();
     loadHospitals();
     loadSpecializations();
+    filteredProfiles.value = profiles;
   }
 
   void loadProfiles() async {

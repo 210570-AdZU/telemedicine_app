@@ -2,8 +2,20 @@ import 'package:flutter/material.dart';
 
 class CaseHeadBox extends StatefulWidget {
   final VoidCallback onTap;
+  final String? name;
+  final String? id;
+  final String? test;
+  final String? hospital;
 
-  const CaseHeadBox({Key? key, required this.onTap}) : super(key: key);
+  const CaseHeadBox({
+    Key? key,
+    required this.onTap,
+    this.name,
+    this.id,
+    this.test,
+    this.hospital,
+    }
+  ) : super(key: key);
 
   @override
   State<CaseHeadBox> createState() => _CaseHeadBoxState();
@@ -51,7 +63,7 @@ class _CaseHeadBoxState extends State<CaseHeadBox> {
                                   ),
                                   SizedBox(width: 7),
                                   Text(
-                                    "Maria N. Thanos",
+                                    '${widget.name}',
                                     style: TextStyle(
                                       color: Colors.green,
                                       fontWeight: FontWeight.bold,
@@ -66,7 +78,7 @@ class _CaseHeadBoxState extends State<CaseHeadBox> {
                                   Icon(Icons.medication, color: Colors.green),
                                   SizedBox(width: 5),
                                   Text(
-                                    "CASE #202406104813",
+                                    '${widget.id}',
                                     style: TextStyle(
                                       color: Colors.green,
                                       fontWeight: FontWeight.bold,
@@ -81,7 +93,7 @@ class _CaseHeadBoxState extends State<CaseHeadBox> {
                                   Icon(Icons.texture_sharp, color: Colors.black45),
                                   SizedBox(width: 5),
                                   Text(
-                                    "TEST",
+                                    '${widget.test}',
                                     style: TextStyle(
                                       color: Colors.black45,
                                       fontWeight: FontWeight.bold,
@@ -96,7 +108,7 @@ class _CaseHeadBoxState extends State<CaseHeadBox> {
                                   Icon(Icons.chat, color: Colors.black38),
                                   SizedBox(width: 5),
                                   Text(
-                                    "Alicia District Hospital",
+                                    '${widget.hospital}',
                                     style: TextStyle(
                                       color: Colors.black45,
                                       fontWeight: FontWeight.bold

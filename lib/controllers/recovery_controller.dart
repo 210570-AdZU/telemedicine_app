@@ -25,7 +25,7 @@ class RecoveryController extends GetxController {
     );
 
     if (users.isEmpty) {
-      Get.snackbar('Error', 'Usern not found');
+      Get.snackbar('Error', 'User not found');
     } else {
       generatedCode.value = (Random().nextInt(900000) + 100000).toString();
       print('Recovery Code: ${generatedCode.value}');

@@ -15,5 +15,9 @@ class DeviceLogController extends GetxController{
       deviceType: 'Tablet',
       deviceIcon: Icons.tablet_android
     ),
+    DeviceLogModel(
+      deviceType: 'IPhone',
+      deviceIcon: Icons.phone_iphone,
+    ),
   ].obs;
 }

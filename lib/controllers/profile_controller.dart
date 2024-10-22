@@ -11,8 +11,8 @@ class ProfileController extends GetxController {
   var extensionNameController = TextEditingController();
   var emailController = TextEditingController();
   var passwordController = TextEditingController();
-  var hospitalId= 1.obs;
-  var specializationId = 1.obs;
+  var hospitalId= Rxn<int>();
+  var specializationId = Rxn<int>();
 
 Future<void> registerProfile() async {
   try {
@@ -23,8 +23,8 @@ Future<void> registerProfile() async {
       extensionName: extensionNameController.text,
       email: emailController.text,
       password: passwordController.text,
-      hospitalId: hospitalId.value,
-      specializationId: specializationId.value,
+      hospitalId: hospitalId.value ?? -1,
+      specializationId: specializationId.value ?? -1,
     );
 
     final result = await ProfileDatabase().insertProfile(profile.toMap()); 
@@ -35,8 +35,8 @@ Future<void> registerProfile() async {
       extensionNameController.clear();
       emailController.clear();
       passwordController.clear();
-      hospitalId.value=1;
-      specializationId.value=1;
+      hospitalId.value=null;
+      specializationId.value=null;
       Get.snackbar('Success', 'Profile registered successfully');
     } else {
       final profiles  = await ProfileDatabase().getProfiles();

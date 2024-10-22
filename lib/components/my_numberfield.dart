@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-class MyTextfield extends StatefulWidget {
+class MyNumberfield extends StatefulWidget {
   final String identifier;
   final String hintText;
   bool obscureText;
@@ -16,8 +16,9 @@ class MyTextfield extends StatefulWidget {
   final int? maxLines;
   final TextInputType keyboardType;
   final TextInputAction textInputAction;
+  final void Function(double) onChanged;
 
-  MyTextfield({
+  MyNumberfield({
     required this.identifier,
     required this.hintText,
     required this.obscureText,
@@ -31,14 +32,15 @@ class MyTextfield extends StatefulWidget {
     this.fontSize=16,
     this.maxLines=1,
     this.keyboardType=TextInputType.none,
-    this.textInputAction=TextInputAction.newline
+    this.textInputAction=TextInputAction.newline,
+    required this.onChanged
   });
 
   @override
-  _MyTextfieldState createState() => _MyTextfieldState();
+  _MyNumberfieldState createState() => _MyNumberfieldState();
 }
 
-class _MyTextfieldState extends State<MyTextfield> {
+class _MyNumberfieldState extends State<MyNumberfield> {
   bool _obscureText = false;
   bool _showError = true;
   late FocusNode _clicked;

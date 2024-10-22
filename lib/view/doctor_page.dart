@@ -6,13 +6,17 @@ import 'package:layout_design/components/my_searchbar.dart';
 import 'package:layout_design/controllers/profile_list_controller.dart';
 import '../components/addmin_button.dart';
 class DoctorPage extends StatelessWidget {
+  final ProfileListController profileListController = Get.put(ProfileListController());
+  final TextEditingController searchController = TextEditingController();
 
   DoctorPage({Key? key}) : super(key: key);
 
-  final ProfileListController profileListController = Get.put(ProfileListController());
-
   @override
   Widget build(BuildContext context) {
+    searchController.addListener(() {
+      profileListController.filterProfiles(searchController.text);
+    });
+
     return Scaffold(
       backgroundColor: Color.fromARGB(255, 243, 243, 243),
       floatingActionButton: AddminButton(),
@@ -25,7 +29,7 @@ class DoctorPage extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 SizedBox(width: MediaQuery.of(context).size.width * 0.03,),
-                MySearchbar(),
+                MySearchbar(searchController: searchController), // Pass the controller
                 SizedBox(width: MediaQuery.of(context).size.width * 0.13,),
                 SizedBox(
                   width: MediaQuery.of(context).size.width * 0.3,
@@ -38,7 +42,7 @@ class DoctorPage extends StatelessWidget {
             SizedBox(height: MediaQuery.of(context).size.height * 0.037,),
             Expanded(
               child: Obx(() => GridView.builder(
-                itemCount: profileListController.profiles.length,
+                itemCount: profileListController.filteredProfiles.length,
                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 2,
                   childAspectRatio: 0.712,
@@ -46,15 +50,15 @@ class DoctorPage extends StatelessWidget {
                   crossAxisSpacing: 8.0,
                 ),
                 itemBuilder: (context, index) {
-                  final profile = profileListController.profiles[index];
+                  final profile = profileListController.filteredProfiles[index];
                   final hospital = profileListController.hospitals.firstWhere((h) => h.id == profile.hospitalId);
                   final specialization = profileListController.specializations.firstWhere((s) => s.id == profile.specializationId);
                   return DPopbox(
                     initialRingcolor: const Color.fromARGB(255, 225, 225, 225),
-                    accountName: profile.fName + ' ' + profile.mName + ' ' + profile.lName,
+                    accountName: '${profile.fName} ${profile.mName} ${profile.lName}',
                     hospital: hospital.name,
                     specialization: specialization.name,
-                    onPressed: (){profileListController.deleteProfile(profile.id!);},
+                    onPressed: () { profileListController.deleteProfile(profile.id!); },
                   );
                 },
               )),

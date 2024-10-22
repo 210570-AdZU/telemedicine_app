@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:layout_design/assets/themes.dart';
 import 'package:layout_design/auth/login_or_register.dart';
 import 'package:layout_design/view/archives.dart';
 import 'package:layout_design/view/case_view.dart';
@@ -42,10 +43,13 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
     return GetMaterialApp(
+      color: theme.scaffoldBackgroundColor,
       debugShowCheckedModeBanner: false,
       initialRoute: '/',
       getPages: routes,
+      theme: appTheme,
     );
   }
 }

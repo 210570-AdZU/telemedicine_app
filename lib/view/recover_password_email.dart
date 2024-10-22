@@ -15,9 +15,11 @@ class RecoverPasswordEmail extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+  final theme = Theme.of(context);
     return Scaffold(
+      backgroundColor: theme.scaffoldBackgroundColor,
       body: Padding(
-        padding: const EdgeInsets.all(24.0),
+        padding: const EdgeInsets.all(39.0),
         child: SingleChildScrollView(
           child: Column(
             children: <Widget>[
@@ -28,8 +30,8 @@ class RecoverPasswordEmail extends StatelessWidget {
                   Image(
                     image: AssetImage('lib/assets/images/Removal-432.png'),
                     fit: BoxFit.cover,
-                    width: 47,
-                    height: 63,
+                    width: 56,
+                    height: 75,
                   ),
                   Padding(
                     padding: EdgeInsets.only(left: 20),
@@ -39,41 +41,41 @@ class RecoverPasswordEmail extends StatelessWidget {
                         Text(
                           'Recover Password',
                           style: TextStyle(
-                            fontSize: 20,
+                            fontSize: 22,
                             fontWeight: FontWeight.bold,
-                            color: Colors.teal,
+                            color: Colors.blueGrey,
                           ),
                         ),
-                        Text('Enter your credentials to continue', style: TextStyle(fontSize: 11),)
+                        Text(
+                          'Enter your credentials to continue',
+                          style: TextStyle(
+                            fontSize: 13,
+                            color: Colors.black54
+                            ),
+                          )
                       ],
                     ),
                   ),
                 ],
               ),
 
-              SizedBox(height: 72,),
+              SizedBox(height: 93,),
 
               // Forgot password
-              const Padding(
-                padding: EdgeInsets.only(right: 12),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    Text(
-                      "A recovery link will be sent to the email binded to your\naccount."
-                      " Upon submitting, open your Gmail app on your\nphone or sign in to"
-                      " your Gmail account in Google Chrome\nand check your inbox for the"
-                      "recovery link. Click the link\n and it will redirect to a page to"
-                      "change your account\npassword.",
-                      style: TextStyle(
-                        fontSize: 14
-                      ),
-                    ),
-                  ],
-                ),
+              Text(
+                  "A recovery link will be sent to the email bound to your account. "
+                  "Upon submitting, open your Gmail app on your phone or sign in to "
+                  "your Gmail account in Google Chrome and check your inbox for the "
+                  "recovery link. Click the link and it will redirect to a page to "
+                  "change your account password.",
+                  style: TextStyle(
+                    fontSize: 15,
+                    color: Colors.grey.shade700
+                  ),
+                  textAlign: TextAlign.start,
               ),
 
-              SizedBox(height: 24,),
+              SizedBox(height: 32,),
 
               // Email text field
               MyTextfield(
@@ -84,7 +86,7 @@ class RecoverPasswordEmail extends StatelessWidget {
                 prefixIcon: Icons.email,
               ),
 
-              SizedBox(height: 24,),
+              SizedBox(height: 44,),
               // Login button
               AccountButton(
                 text: "Send Code",
@@ -94,7 +96,7 @@ class RecoverPasswordEmail extends StatelessWidget {
                 },
               ),
 
-              SizedBox(height: 24,),
+              SizedBox(height: 20,),
 
               // Register link
               AccountButton(
@@ -103,11 +105,11 @@ class RecoverPasswordEmail extends StatelessWidget {
                   recoveryController.emailController.clear(),
                   Get.back(),
                 },
-                color: Colors.black26,
-                initialTextColor: Colors.black54,
+                color: const Color.fromARGB(255, 222, 222, 222),
+                initialTextColor: Colors.blueGrey,
               ),
 
-              SizedBox(height: 12,),
+              SizedBox(height: 93,),
 
               // Test text (optional)
               const Padding(
@@ -117,7 +119,7 @@ class RecoverPasswordEmail extends StatelessWidget {
                   children: [
                     Text(
                       "©2023 Zamboanga City Medical Center. All rights reserved",
-                      style: TextStyle(fontSize: 8),
+                      style: TextStyle(fontSize: 10),
                     )
                   ],
                 ),

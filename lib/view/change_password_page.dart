@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:layout_design/components/account_button.dart';
 import 'package:layout_design/components/my_textfield.dart';
 import '../controllers/auth_controller.dart';
 
@@ -12,30 +13,46 @@ class ChangePasswordPage extends StatelessWidget {
     if (authController.currentProfile.value != null) {
       authController.initializeTextControllers(authController.currentProfile.value!);
     }
+    final theme = Theme.of(context);
     return Scaffold(
+      backgroundColor: theme.scaffoldBackgroundColor,
       appBar: AppBar(
         automaticallyImplyLeading: false,
         title: Padding(
-          padding: const EdgeInsets.all(8.0),
+          padding: const EdgeInsets.only(left: 8, right: 8),
           child: Row(
             children: [
-              Container(width: 40, child: Image.asset('lib/assets/images/Removal-432.png')),
+              Image.asset(
+                  'lib/assets/images/Removal-432.png',
+                  fit: BoxFit.fill,
+                  width: 43,
+                  height: 58,
+              ),
               SizedBox(width: MediaQuery.of(context).size.width * 0.075,),
               Column(
-                crossAxisAlignment: CrossAxisAlignment.start, // Align text to the start
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
                     'Telemedicine Web App',
                     style: TextStyle(
-                      fontSize: 16,
+                      fontSize: 20,
                       fontWeight: FontWeight.bold,
                       color: Colors.black54,
+                    ),
+                  ),
+                  SizedBox(
+                    height: 1,
+                    width: 208,
+                    child: DecoratedBox(
+                      decoration: BoxDecoration(
+                        color: Colors.black26,
+                      ),
                     ),
                   ),
                   Text(
                     ' Zamboanga City Medical Center',
                     style: TextStyle(
-                      fontSize: 12,
+                      fontSize: 14,
                       fontWeight: FontWeight.w400,
                       fontStyle: FontStyle.italic,
                     ),
@@ -91,12 +108,12 @@ class ChangePasswordPage extends StatelessWidget {
                 controller: authController.passwordController,
               ),
               SizedBox(height: 20,),
-              ElevatedButton(
-                onPressed: () {
-                  authController.updateProfile();
-                },
-                child: Text('Update Info'),
-              ),
+                AccountButton(
+                  text: 'Update Info',
+                  onTap: () {
+                    authController.updateProfile();
+                  },
+                  color: Colors.blueGrey),
               ],
             ),
             SizedBox(height: 12,),

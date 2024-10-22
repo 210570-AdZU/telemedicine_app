@@ -4,18 +4,23 @@ import 'package:layout_design/controllers/first_page_controller.dart';
 import 'package:layout_design/controllers/auth_controller.dart';
 
 class FirstPage extends StatelessWidget {
-  // Create a controller to manage the state
   final FirstPageController controller = Get.put(FirstPageController());
   final AuthController authController = Get.put(AuthController());
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
     return Scaffold(
+      backgroundColor: theme.scaffoldBackgroundColor,
       appBar: AppBar(
         automaticallyImplyLeading: false,
         title: Row(
           children: [
-            Container(width: 32, child: Image.asset('lib/assets/images/Removal-432.png')),
+            Image.asset(
+              'lib/assets/images/Removal-432.png',
+              width: 33,
+              height: 45,
+            ),
             SizedBox(width: MediaQuery.of(context).size.width * 0.02,),
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -23,15 +28,24 @@ class FirstPage extends StatelessWidget {
                 Text(
                   'TELEMEDICINE',
                   style: TextStyle(
-                    fontSize: 15,
+                    fontSize: 18,
                     fontWeight: FontWeight.bold,
                     color: Colors.black54,
                   ),
                 ),
+                  SizedBox(
+                    height: 1,
+                    width: 128,
+                    child: DecoratedBox(
+                      decoration: BoxDecoration(
+                        color: Colors.black26,
+                      ),
+                    ),
+                  ),
                 Text(
                   ' Z.C Medical Center',
                   style: TextStyle(
-                    fontSize: 10,
+                    fontSize: 12,
                     fontWeight: FontWeight.w400,
                     fontStyle: FontStyle.italic,
                   ),
@@ -48,18 +62,19 @@ class FirstPage extends StatelessWidget {
               children: [
                 Icon(
                   Icons.message_outlined,
-                  color: Colors.blueGrey,
+                  color: Colors.grey.shade600,
                 ),
                 Positioned(
                   top: -4,
-                  right: -10,
+                  right: -12,
                   child: CircleAvatar(
-                    radius: 10,
+                    radius: 11,
                     backgroundColor: Colors.blueGrey,
                     child: Text(
                       "2",
                       style: TextStyle(
-                        fontSize: 10,
+                        fontSize: 13,
+                        fontWeight: FontWeight.w900,
                         color: Colors.white,
                       ),
                     ),
@@ -78,18 +93,19 @@ class FirstPage extends StatelessWidget {
               children: [
                 Icon(
                   Icons.notifications_outlined,
-                  color: Colors.orange,
+                  color: Colors.grey.shade600,
                 ),
                 Positioned(
-                  top: 0,
-                  right: -8,
+                  top: -1,
+                  right: -9,
                   child: CircleAvatar(
-                    radius: 10,
+                    radius: 11,
                     backgroundColor: Colors.orange,
                     child: Text(
                       "2",
                       style: TextStyle(
-                        fontSize: 10,
+                        fontSize: 13,
+                        fontWeight: FontWeight.w900,
                         color: Colors.white,
                       ),
                     ),

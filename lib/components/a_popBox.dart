@@ -1,10 +1,25 @@
 import 'package:flutter/material.dart';
 
 class APopbox extends StatefulWidget {
-  final String title;
+  final String name;
+  final String age;
+  final String hospital;
+  final String sex;
+  final String patientId;
   final VoidCallback onTap;
+  final VoidCallback chat;
 
-  const APopbox({Key? key, required this.title, required this.onTap}) : super(key: key);
+  const APopbox(
+    {Key? key,
+    required this.name,
+    required this.age,
+    required this.hospital,
+    required this.sex,
+    required this.patientId,
+    required this.onTap,
+    required this.chat
+    }
+  ) : super(key: key);
 
   @override
   State<APopbox> createState() => _APopboxState();
@@ -22,7 +37,7 @@ class _APopboxState extends State<APopbox> {
           child: Container(
             padding: EdgeInsets.symmetric(vertical: 4),
             child: Text(
-              'Alicia District Hospital',
+              widget.hospital,
               style: TextStyle(
                 fontSize: 13,
                 color: Colors.black54
@@ -64,7 +79,7 @@ class _APopboxState extends State<APopbox> {
                           Row(
                             children: [
                               Text(
-                                widget.title,
+                                widget.name,
                                 style: TextStyle(
                                     fontSize: 18,
                                 ),
@@ -80,15 +95,15 @@ class _APopboxState extends State<APopbox> {
                                 size: 18,
                               ),
                               SizedBox(width: 4),
-                              Text("2 yrs"),
+                              Text(widget.age),
                               SizedBox(width: 20),
                               Icon(
-                                Icons.male,
+                                widget.sex=='Male' ? Icons.male : Icons.female,
                                 color: Colors.blue,
                                 size: 22,
                               ),
                               SizedBox(width: 4),
-                              Text("Male"),
+                              Text(widget.sex),
                             ],
                           ),
                           SizedBox(height: 4),
@@ -97,18 +112,21 @@ class _APopboxState extends State<APopbox> {
                             children: [
                               Icon(Icons.medication, color: Colors.blueGrey),
                               SizedBox(width: 5),
-                              Text("202406104813"),
+                              Text(widget.patientId),
                             ],
                           ),
                           SizedBox(height: 12),
                           Row(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Icon(
-                                Icons.chat_outlined,
-                                color: Colors.lightBlueAccent,
-                                size: 20,
-                              ),
+                              //IconButton(
+                                /*icon:*/ Icon(
+                                  Icons.chat_outlined,
+                                  color: Colors.lightBlueAccent,
+                                  size: 20,
+                                ),
+                                //onPressed: widget.chat,
+                              //),
                               SizedBox(width: 5),
                               Text(
                                 "Chats",

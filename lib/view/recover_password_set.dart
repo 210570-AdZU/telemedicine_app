@@ -19,7 +19,9 @@ class RecoverPasswordSet extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+  final theme = Theme.of(context);
     return Scaffold(
+      backgroundColor: theme.scaffoldBackgroundColor,
       body: Padding(
         padding: const EdgeInsets.all(24.0),
         child: SingleChildScrollView(

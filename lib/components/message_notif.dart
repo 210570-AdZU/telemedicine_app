@@ -41,7 +41,7 @@ class _MessageNotifState extends State<MessageNotif> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 CircleAvatar(
-                  backgroundColor: Colors.black54,
+                  backgroundColor: Color.fromRGBO(160,108,124, 1),
                   radius: 25,
                   child: Stack(
                     children: [
@@ -51,7 +51,7 @@ class _MessageNotifState extends State<MessageNotif> {
                             "TA",
                             style: TextStyle(
                               fontSize: 20,
-                              fontWeight: FontWeight.bold,
+                              fontWeight: FontWeight.w500,
                               color: Colors.white
                             ),
                           ),
@@ -59,10 +59,10 @@ class _MessageNotifState extends State<MessageNotif> {
                       Stack(
                         children: [
                           Positioned(
-                            bottom: 0,
-                            right: 0,
+                            bottom: -2,
+                            right: -2,
                             child: CircleAvatar(
-                              radius: 8,
+                              radius: 9,
                               backgroundColor: Colors.white,
                               child: CircleAvatar(
                                 backgroundColor: Colors.black54,
@@ -84,8 +84,8 @@ class _MessageNotifState extends State<MessageNotif> {
                         "Tristan Jay Amit",
                         style: TextStyle(
                           fontSize: 17,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.black54
+                          fontWeight: FontWeight.w600,
+                          color: Colors.grey.shade700
                         ),
                       ),
                       SizedBox(height: 8,),
@@ -93,6 +93,7 @@ class _MessageNotifState extends State<MessageNotif> {
                         "Test",
                         style: TextStyle(
                           fontSize: 11,
+                          color: Colors.grey.shade700
                         ),
                       ),
                     ],
@@ -102,6 +103,8 @@ class _MessageNotifState extends State<MessageNotif> {
                   "7 days ago",
                   style: TextStyle(
                     fontSize: 10,
+                    fontWeight: FontWeight.w500,
+                    color: Colors.grey.shade600
                   ),
                 ),
               ],

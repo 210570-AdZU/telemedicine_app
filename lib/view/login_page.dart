@@ -18,21 +18,23 @@ class LoginPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+  final theme = Theme.of(context);
     return Scaffold(
+      backgroundColor: theme.scaffoldBackgroundColor,
       body: Padding(
-        padding: const EdgeInsets.all(24.0),
+        padding: const EdgeInsets.all(44.0),
         child: SingleChildScrollView(
           child: Column(
             children: <Widget>[
-              SizedBox(height: 120,),
+              SizedBox(height: 210,),
               const Row(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   Image(
                     image: AssetImage('lib/assets/images/Removal-432.png'),
                     fit: BoxFit.cover,
-                    width: 47,
-                    height: 63,
+                    width: 55,
+                    height: 74,
                   ),
                   Padding(
                     padding: EdgeInsets.only(left: 20),
@@ -42,19 +44,23 @@ class LoginPage extends StatelessWidget {
                         Text(
                           'Sign In',
                           style: TextStyle(
-                            fontSize: 20,
+                            fontSize: 22,
                             fontWeight: FontWeight.bold,
-                            color: Colors.teal,
+                            color: Colors.blueGrey,
+                            height: 1
                           ),
                         ),
-                        Text('Enter your credentials to continue', style: TextStyle(fontSize: 11),)
+                        Text('Enter your credentials to continue', style: TextStyle(
+                          fontSize: 13,
+                          color: Colors.black54),
+                        )
                       ],
                     ),
                   ),
                 ],
               ),
 
-              SizedBox(height: 72,),
+              SizedBox(height: 86,),
 
               // Email text field
               MyTextfield(
@@ -65,7 +71,7 @@ class LoginPage extends StatelessWidget {
                 prefixIcon: Icons.person,
               ),
 
-              SizedBox(height: 24,),
+              SizedBox(height: 12,),
 
               // Password text field
               MyTextfield(
@@ -77,20 +83,25 @@ class LoginPage extends StatelessWidget {
                 suffixIcon: Icons.visibility_off,
               ),
 
-              SizedBox(height: 24,),
+              SizedBox(height: 28,),
 
               // Forgot password
               Row(
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
                   GestureDetector(
-                    child: Text("Forgot Password?"),
+                    child: Text(
+                      "Forgot Password?",
+                      style: TextStyle(
+                        fontSize: 15,
+                      ),
+                    ),
                     onTap: () => Get.toNamed('/recoverpasswordemail'),
                   ),
                 ],
               ),
 
-              SizedBox(height: 24,),
+              SizedBox(height: 28,),
 
               // Login button
               AccountButton(
@@ -139,7 +150,7 @@ class LoginPage extends StatelessWidget {
                   children: [
                     Text(
                       "©2023 Zamboanga City Medical Center. All rights reserved",
-                      style: TextStyle(fontSize: 8),
+                      style: TextStyle(fontSize: 10),
                     )
                   ],
                 ),

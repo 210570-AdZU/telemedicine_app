@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 
 class MySearchbar extends StatefulWidget {
-  const MySearchbar({super.key});
+  final TextEditingController searchController;
+
+  MySearchbar({super.key, required this.searchController});
 
   @override
   State<MySearchbar> createState() => _MySearchbarState();
@@ -17,6 +19,7 @@ class _MySearchbarState extends State<MySearchbar> {
         width: MediaQuery.of(context).size.width * 0.45,
         height: 37,
         child: TextField(
+          controller: widget.searchController,
           decoration: InputDecoration(
             hintText: "Search...",
             contentPadding: EdgeInsets.only(left: 16, top: 10, bottom: 18),
@@ -46,8 +49,8 @@ class _MySearchbarState extends State<MySearchbar> {
             ),
             border: OutlineInputBorder(
               borderRadius: BorderRadius.circular(24),
-              borderSide: BorderSide.none
-            )
+              borderSide: BorderSide.none,
+            ),
           ),
         ),
       ),

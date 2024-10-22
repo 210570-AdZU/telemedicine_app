@@ -1,12 +1,15 @@
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
+import 'package:layout_design/components/my_numberfield.dart';
+import 'package:layout_design/controllers/case_controller.dart';
+import 'package:layout_design/controllers/case_list_controller.dart';
+import '../components/my_textfield.dart';
 import '../components/register_dropdownselect.dart';
 import '../components/account_button.dart';
-import '../components/my_textfield.dart';
-import '../controllers/register_case_controller.dart';
 
 class RegisterCasePage extends StatelessWidget {
-  final RegisterCaseController controller = Get.put(RegisterCaseController());
+  final CaseController caseController = Get.put(CaseController());
+  final CaseListController caseListController = Get.put(CaseListController());
   final Function()? onTap;
   // String emailRegex = r"[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0 -9](?:[a-zA-Z0-9-]*[a-zA-Z0-9])?\.[a-zA-Z]{2,}";
   RegisterCasePage({
@@ -16,7 +19,9 @@ class RegisterCasePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+  final theme = Theme.of(context);
     return Scaffold(
+      backgroundColor: theme.scaffoldBackgroundColor,
       body: Padding(
         padding: const EdgeInsets.all(24.0),
         child: SingleChildScrollView(
@@ -24,235 +29,305 @@ class RegisterCasePage extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               SizedBox(height: 16,),
-              const Row(
+              Row(
                 mainAxisAlignment: MainAxisAlignment.start,
                 //logo
                 children: [
                 //company
                 Text(
-                  'Register Case', style: TextStyle(
-                    fontSize: 24,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.blueGrey
+                  'Register Case',
+                  style: TextStyle(
+                    fontSize: 30,
+                    fontWeight: FontWeight.w500,
+                    color: Colors.grey.shade800
                     ),
                   textAlign: TextAlign.left,
                   ),
                 ],
               ),
           
-                SizedBox(height: 15,),
+                SizedBox(height: 18,),
 
                 Text(
                   "Patient",
                   style: TextStyle(
-                    fontSize: 16
+                    fontSize: 18
                   ),
                 ),
 
                 SizedBox(height: 8,),
 
-                DropdownButtonFormField<String>(
-                  isExpanded: true,
-                  decoration: InputDecoration(
-                    isDense: true,
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(10.0),
-                      borderSide: BorderSide(color: Colors.blue, width: 2.0),
+                Obx(() {
+                  return DropdownButtonFormField<int>(
+                    isExpanded: true,
+                    decoration: InputDecoration(
+                      isDense: true,
+                      focusedBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(8),
+                          borderSide: BorderSide(
+                            width: 1,
+                            color: Colors.black12
+                          ),
+                      ),
+                      enabledBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(8),
+                          borderSide: BorderSide(
+                            width: 1,
+                            color: Colors.black12
+                          ),
+                      ),
+                      errorBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(8),
+                          borderSide: BorderSide(
+                            width: 1,
+                            color: Colors.black12
+                          ),
+                      ),
+                      contentPadding: EdgeInsets.symmetric(vertical: 8.0, horizontal: 16),
                     ),
-                    contentPadding: EdgeInsets.symmetric(vertical: 8.0),
-                  ),
-                  onChanged: (String? newValue) {
-                    // if (newValue != null) {
-                    // }
-                  },
-                  items: <String>[
-                    '(None)',
-                    'Test'
-                  ]
-                      .map<DropdownMenuItem<String>>((String value) {
-                    return DropdownMenuItem<String>(
-                      value: value,
-                      child: Text(value),
-                    );
-                  }).toList(),
-                ),
+                    value: caseController.patientIdController.value,
+                    hint: Text('Select Patient'),
+                    items: caseListController.patients.map((patient) {
+                      return DropdownMenuItem<int>(
+                        value: patient.id,
+                        child: Text(
+                          patient.middleName!.isEmpty
+                          ? patient.firstName + patient.lastName
+                          : patient.firstName + ' ' + patient.middleName! + ' ' + patient.lastName,
+                          style: TextStyle(
+                            fontWeight: FontWeight.w400
+                          ),
+                        ),
+                      );
+                    }).toList(),
+                    onChanged: (value) {
+                      if (value != null) {
+                        caseController.patientIdController.value = value;
+                      }
+                    },
+                  );
+                }),
 
                 SizedBox(height: 6,),
 
                 Text(
-                  "Specialization",
+                  "Hospital",
                   style: TextStyle(
-                    fontSize: 12
+                    fontSize: 14
                   ),
                 ),
 
-                SizedBox(height: 6,),
+                SizedBox(height: 8,),
 
-                DropdownButtonFormField<String>(
-                  isExpanded: true,
-                  decoration: InputDecoration(
-                    isDense: true,
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(10.0),
-                      borderSide: BorderSide(color: Colors.blue, width: 2.0),
+                Obx(() {
+                  return DropdownButtonFormField<int>(
+                    isExpanded: true,
+                    decoration: InputDecoration(
+                      isDense: true,
+                      focusedBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(8),
+                          borderSide: BorderSide(
+                            width: 1,
+                            color: Colors.black12
+                          ),
+                      ),
+                      enabledBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(8),
+                          borderSide: BorderSide(
+                            width: 1,
+                            color: Colors.black12
+                          ),
+                      ),
+                      errorBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(8),
+                          borderSide: BorderSide(
+                            width: 1,
+                            color: Colors.black12
+                          ),
+                      ),
+                      contentPadding: EdgeInsets.symmetric(vertical: 8.0, horizontal: 16),
                     ),
-                    contentPadding: EdgeInsets.symmetric(vertical: 8.0),
-                  ),
-                  onChanged: (String? newValue) {
-                    // if (newValue != null) {
-                    // }
-                  },
-                  items: <String>[
-                    '(None)',
-                    'Test'
-                  ]
-                      .map<DropdownMenuItem<String>>((String value) {
-                    return DropdownMenuItem<String>(
-                      value: value,
-                      child: Text(value),
-                    );
-                  }).toList(),
-                ),
+                    value: caseController.hospitalIdController.value,
+                    hint: Text('Select Hospital'),
+                    items: caseListController.hospitals.map((hospital) {
+                      return DropdownMenuItem<int>(
+                        value: hospital.id,
+                        child: Text(
+                          hospital.name,
+                          style: TextStyle(
+                            fontWeight: FontWeight.w400
+                          ),
+                        ),
+                      );
+                    }).toList(),
+                    onChanged: (value) {
+                      if (value != null) {
+                        caseController.patientIdController.value = value;
+                      }
+                    },
+                  );
+                }),
 
-                SizedBox(height: 20,),
+                SizedBox(height: 26,),
 
                 Text(
                   "Temperature",
                   style: TextStyle(
-                    fontSize: 16
+                    fontSize: 18
                   ),
                 ),
 
-                SizedBox(height: 8,),
+                SizedBox(height: 10,),
 
-                MyTextfield(
+                MyNumberfield(
                   identifier: "temperature",
-                  hintText: "Temperature",
+                  hintText: "  Enter Temperature",
+                  fontSize: 18,
                   isCollapsed: true,
                   obscureText: false,
-                  controller: controller.temperatureController,
+                  controller: caseController.temperatureController,
+                  keyboardType: TextInputType.number,
+                  onChanged: (value) => caseController.updateTemperature(),
                 ),
 
-                SizedBox(height: 16,),
+                SizedBox(height: 18,),
 
                 Text(
                   "Respiration",
                   style: TextStyle(
-                    fontSize: 16
+                    fontSize: 18
                   ),
                 ),
 
-                SizedBox(height: 8,),
+                SizedBox(height: 10,),
 
-                MyTextfield(
+                MyNumberfield(
                   identifier: "respiration",
-                  hintText: "Respiration",
+                  hintText: "  Enter Respiration",
+                  fontSize: 18,
                   isCollapsed: true,
                   obscureText: false,
-                  controller: controller.respirationController,
+                  controller: caseController.respiratoryController,
+                  keyboardType: TextInputType.number,
+                  onChanged: (value) => caseController.updateRespiratory(),
                 ),
 
-                SizedBox(height: 16,),
+                SizedBox(height: 18,),
 
                 Text(
                   "Heart",
                   style: TextStyle(
-                    fontSize: 16
+                    fontSize: 18
                   ),
                 ),
 
-                SizedBox(height: 8,),
+                SizedBox(height: 10,),
                 
-                MyTextfield(
+                MyNumberfield(
                   identifier: "heart status",
-                  hintText: "Heart",
+                  hintText: "  Enter Heart Status",
+                  fontSize: 18,
                   isCollapsed: true,
                   obscureText: false,
-                  controller: controller.heartController,
+                  controller: caseController.heartController,
+                  keyboardType: TextInputType.number,
+                  onChanged: (value) => caseController.updateHeart(),
                 ),
 
-                SizedBox(height: 16,),
+                SizedBox(height: 18,),
 
                 Text(
                   "Blood",
                   style: TextStyle(
-                    fontSize: 16
+                    fontSize: 18
                   ),
                 ),
 
-                SizedBox(height: 8,),
+                SizedBox(height: 10,),
                 
-                MyTextfield(
+                MyNumberfield(
                   identifier: "blood status",
-                  hintText: "Blood",
+                  hintText: "  Enter Blood Status",
+                  fontSize: 18,
                   isCollapsed: true,
                   obscureText: false,
-                  controller: controller.bloodController,
+                  controller: caseController.bloodController,
+                  keyboardType: TextInputType.number,
+                  onChanged: (value) => caseController.updateBlood(),
                 ),
 
-                SizedBox(height: 16,),
+                SizedBox(height: 18,),
 
                 Text(
                   "Oxygen",
                   style: TextStyle(
-                    fontSize: 16
+                    fontSize: 18
                   ),
                 ),
 
                 SizedBox(height: 8,),
                 
-                MyTextfield(
+                MyNumberfield(
                   identifier: "oxygen status",
-                  hintText: "Oxygen",
+                  hintText: "  Enter Oxygen Status",
+                  fontSize: 18,
                   isCollapsed: true,
                   obscureText: false,
-                  controller: controller.oxygenController,
+                  controller: caseController.oxygenController,
+                  keyboardType: TextInputType.number,
+                  onChanged: (value) => caseController.updateOxygen(),
                 ),
 
-                SizedBox(height: 20,),
+                SizedBox(height: 18,),
 
                 Text(
                   "Weight",
                   style: TextStyle(
-                    fontSize: 16
+                    fontSize: 18
                   ),
                 ),
 
                 SizedBox(height: 8,),
                 
-                MyTextfield(
+                MyNumberfield(
                   identifier: "weight",
-                  hintText: "Weight",
+                  hintText: "  Enter Weight",
+                  fontSize: 18,
                   isCollapsed: true,
                   obscureText: false,
-                  controller: controller.weightController,
+                  controller: caseController.weightController,
+                  keyboardType: TextInputType.number,
+                  onChanged: (value) => caseController.updateWeight(),
                 ),
 
-                SizedBox(height: 16,),
+                SizedBox(height: 18,),
 
                 Text(
                   "Height",
                   style: TextStyle(
-                    fontSize: 16
+                    fontSize: 18
                   ),
                 ),
 
                 SizedBox(height: 8,),
                 
-                MyTextfield(
+                MyNumberfield(
                   identifier: "height",
-                  hintText: "Height",
+                  hintText: "  Enter Height",
+                  fontSize: 18,
                   isCollapsed: true,
                   obscureText: false,
-                  controller: controller.heightController,
+                  controller: caseController.heightController,
+                  keyboardType: TextInputType.number,
+                  onChanged: (value) => caseController.updateHeight(),
                 ),
           
-                SizedBox(height: 16,),
+                SizedBox(height: 18,),
 
                 Text(
                   "Chief complaint",
                   style: TextStyle(
-                    fontSize: 16
+                    fontSize: 18
                   ),
                 ),
 
@@ -260,23 +335,23 @@ class RegisterCasePage extends StatelessWidget {
                 
                 MyTextfield(
                   identifier: "chief complaint",
-                  hintText: "Chief complaint",
-                  fontSize: 14,
+                  hintText: "  Enter Chief Complaint",
+                  fontSize: 18,
                   contentPadding: EdgeInsets.fromLTRB(12, 4, 8, 44),
                   maxLines: 4,
                   keyboardType: TextInputType.multiline,
                   textInputAction: TextInputAction.newline,
                   isCollapsed: true,
                   obscureText: false,
-                  controller: controller.complaintController,
+                  controller: caseController.ccController,
                 ),
           
-                SizedBox(height: 16,),
+                SizedBox(height: 18,),
 
                 Text(
                   "History of present illness",
                   style: TextStyle(
-                    fontSize: 16
+                    fontSize: 18
                   ),
                 ),
 
@@ -284,20 +359,20 @@ class RegisterCasePage extends StatelessWidget {
                 
                 MyTextfield(
                   identifier: "history of present illness",
-                  hintText: "History of present illness",
-                  fontSize: 14,
+                  hintText: "  Enter History of Present Illness",
+                  fontSize: 18,
                   contentPadding: EdgeInsets.fromLTRB(12, 4, 8, 44),
                   isCollapsed: true,
                   obscureText: false,
-                  controller: controller.illnessController,
+                  controller: caseController.hpiController,
                 ),
           
-                SizedBox(height: 16,),
+                SizedBox(height: 18,),
 
                 Text(
                   "Past medical history",
                   style: TextStyle(
-                    fontSize: 16
+                    fontSize: 18
                   ),
                 ),
 
@@ -305,41 +380,28 @@ class RegisterCasePage extends StatelessWidget {
                 
                 MyTextfield(
                   identifier: "past medical history",
-                  hintText: "Past medical history",
-                  fontSize: 14,
+                  hintText: "  Enter Past Medical History",
+                  fontSize: 18,
                   contentPadding: EdgeInsets.fromLTRB(12, 4, 8, 44),
                   isCollapsed: true,
                   obscureText: false,
-                  controller: controller.pastHistController,
+                  controller: caseController.pmhController,
                 ),
           
-                SizedBox(height: 16,),
+                SizedBox(height: 18,),
 
                 Text(
                   "Review of system",
                   style: TextStyle(
-                    fontSize: 16
+                    fontSize: 18
                   ),
                 ),
-
-                SizedBox(height: 8,),
-                
-                MyTextfield(
-                  identifier: "review of system",
-                  hintText: "Review of system",
-                  fontSize: 14,
-                  contentPadding: EdgeInsets.fromLTRB(12, 4, 8, 44),
-                  isCollapsed: true,
-                  obscureText: false,
-                  controller: controller.reviewController,
-                ),
-          
-                SizedBox(height: 16,),
+                SizedBox(height: 18,),
 
                 Text(
                   "Physical examination",
                   style: TextStyle(
-                    fontSize: 16
+                    fontSize: 18
                   ),
                 ),
 
@@ -347,20 +409,20 @@ class RegisterCasePage extends StatelessWidget {
                 
                 MyTextfield(
                   identifier: "physical examination",
-                  hintText: "Physical examination",
-                  fontSize: 14,
+                  hintText: "  Enter Physical Examination",
+                  fontSize: 18,
                   contentPadding: EdgeInsets.fromLTRB(12, 4, 8, 44),
                   isCollapsed: true,
                   obscureText: false,
-                  controller: controller.examinationController,
+                  controller: caseController.peController,
                 ),
           
-                SizedBox(height: 16,),
+                SizedBox(height: 18,),
 
                 Text(
                   "Ward information",
                   style: TextStyle(
-                    fontSize: 16
+                    fontSize: 18
                   ),
                 ),
 
@@ -368,20 +430,20 @@ class RegisterCasePage extends StatelessWidget {
                 
                 MyTextfield(
                   identifier: "ward information",
-                  hintText: "Ward information",
-                  fontSize: 14,
+                  hintText: "  Enter Ward Information",
+                  fontSize: 18,
                   contentPadding: EdgeInsets.fromLTRB(12, 4, 8, 44),
                   isCollapsed: true,
                   obscureText: false,
-                  controller: controller.wardInfoController,
+                  controller: caseController.wiController,
                 ),
           
-                SizedBox(height: 16,),
+                SizedBox(height: 18,),
 
                 Text(
                   "Inherited medical disorders",
                   style: TextStyle(
-                    fontSize: 16
+                    fontSize: 18
                   ),
                 ),
 
@@ -389,20 +451,20 @@ class RegisterCasePage extends StatelessWidget {
                 
                 MyTextfield(
                   identifier: "inherited medical disorders",
-                  hintText: "Inherited medical disorders",
-                  fontSize: 14,
+                  hintText: "  Enter Inherited Medical Disorders",
+                  fontSize: 18,
                   contentPadding: EdgeInsets.fromLTRB(12, 4, 8, 44),
                   isCollapsed: true,
                   obscureText: false,
-                  controller: controller.inheritedDisorderController,
+                  controller: caseController.imdController,
                 ),
           
-                SizedBox(height: 16,),
+                SizedBox(height: 18,),
 
                 Text(
                   "Reason",
                   style: TextStyle(
-                    fontSize: 16
+                    fontSize: 18
                   ),
                 ),
 
@@ -410,12 +472,12 @@ class RegisterCasePage extends StatelessWidget {
                 
                 MyTextfield(
                   identifier: "reason",
-                  hintText: "Reason",
-                  fontSize: 14,
+                  hintText: "  Enter Reason",
+                  fontSize: 18,
                   contentPadding: EdgeInsets.fromLTRB(12, 4, 8, 44),
                   isCollapsed: true,
                   obscureText: false,
-                  controller: controller.reasonController,
+                  controller: caseController.reasonController,
                 ),
           
                 SizedBox(height: 16,),
@@ -439,7 +501,7 @@ class RegisterCasePage extends StatelessWidget {
                       text: "Submit",
                       color: Colors.blueGrey,
                       onTap: (){
-                        controller.registerCase();
+                        caseController.registerCase();
                         if(onTap!=null){
                           onTap!();
                         }

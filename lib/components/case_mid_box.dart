@@ -5,13 +5,15 @@ class CaseMidBox extends StatefulWidget {
   final VoidCallback onTap;
   final IconData icon;
   final Color iconColor;
+  final double? value;
 
   const CaseMidBox({
     Key? key,
     required this.onTap,
     this.detail='',
     this.icon=Icons.person,
-    this.iconColor=Colors.black
+    this.iconColor=Colors.black,
+    this.value,
   }) : super(key: key);
 
   @override
@@ -48,7 +50,7 @@ class _CaseMidBoxState extends State<CaseMidBox> {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Text(
-                                    "45",
+                                    widget.value.toString(),
                                     style: TextStyle(
                                       fontSize: 28,
                                       fontWeight: FontWeight.bold

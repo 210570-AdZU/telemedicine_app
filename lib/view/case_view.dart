@@ -6,13 +6,28 @@ import 'package:layout_design/components/case_head_box.dart';
 import 'package:layout_design/components/case_mid_box.dart';
 import 'package:layout_design/components/follow_up_button.dart';
 
-class CaseView extends StatelessWidget {
+import '../models/case.dart';
+import '../models/hospital.dart';
+import '../models/patient.dart';
+
+class CaseView extends StatefulWidget {
+  final Case? cases;
+  final Patient? patients;
+  final Hospital? hospitals;
   final Function()? onTap;
   CaseView({
     super.key,
-    this.onTap
+    this.onTap,
+    this.cases,
+    this.patients,
+    this.hospitals,
   });
 
+  @override
+  State<CaseView> createState() => _CaseViewState();
+}
+
+class _CaseViewState extends State<CaseView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -21,14 +36,14 @@ class CaseView extends StatelessWidget {
           Align(
             alignment: Alignment.bottomRight,
             child: Padding(
-              padding: const EdgeInsets.only(bottom: 72.0, right: 0.0), // Adjust for spacing
+              padding: const EdgeInsets.only(bottom: 72.0, right: 0.0),
               child: CallButton(),
             ),
           ),
           Align(
             alignment: Alignment.bottomRight,
             child: Padding(
-              padding: const EdgeInsets.only(bottom: 16.0, right: 0.0), // Adjust for spacing
+              padding: const EdgeInsets.only(bottom: 16.0, right: 0.0),
               child: FollowUpButton(),
             ),
           ),
@@ -92,7 +107,12 @@ class CaseView extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-              CaseHeadBox(onTap: (){}),
+              CaseHeadBox(
+                name: '${widget.patients?.lastName}, ${widget.patients?.firstName} ${widget.patients?.middleName}',
+                id: '#${DateTime.now().year}${DateTime.now().month}${DateTime.now().day}${widget.patients?.id}',
+                test: 'test',
+                hospital: 'test',
+                onTap: (){print('test');}),
               SizedBox(height: 20,),
               Row(
                 children: [
@@ -127,7 +147,7 @@ class CaseView extends StatelessWidget {
                         ),
                       ),
                       Text(
-                        "Thanos, Maria Noresa",
+                        '${widget.patients?.lastName}, ${widget.patients?.firstName} ${widget.patients?.middleName}',
                         style: TextStyle(
                           fontSize: 13,
                           fontWeight: FontWeight.bold
@@ -140,7 +160,11 @@ class CaseView extends StatelessWidget {
                         ),
                       ),
                       Text(
-                        "2yrs(02/10/2022)",
+                        '${DateTime.now().year - (widget.patients?.birthday?.year ?? 0)}'
+                        '${((DateTime.now().year - (widget.patients?.birthday?.year ?? 0)) == 1) ? ' yr' : ' yrs'}'
+                        ' (${widget.patients?.birthday?.year}'
+                        '-${widget.patients?.birthday?.month}'
+                        '-${widget.patients?.birthday?.day})',
                         style: TextStyle(
                           fontSize: 13,
                           fontWeight: FontWeight.bold
@@ -163,7 +187,7 @@ class CaseView extends StatelessWidget {
                         ),
                       ),
                       Text(
-                        "Male",
+                        '${widget.patients?.sex}',
                         style: TextStyle(
                           fontSize: 13,
                           fontWeight: FontWeight.bold
@@ -182,7 +206,7 @@ class CaseView extends StatelessWidget {
                         ),
                       ),
                       Text(
-                        "Single",
+                        '${widget.patients?.civilStatus}',
                         style: TextStyle(
                           fontSize: 13,
                           fontWeight: FontWeight.bold
@@ -201,7 +225,7 @@ class CaseView extends StatelessWidget {
                         ),
                       ),
                       Text(
-                        "09123456789",
+                        '${widget.patients?.contactNumber}',
                         style: TextStyle(
                           fontSize: 13,
                           fontWeight: FontWeight.bold
@@ -225,7 +249,7 @@ class CaseView extends StatelessWidget {
                         ),
                       ),
                       Text(
-                        "undefined",
+                        '${widget.patients?.birthplace}',
                         style: TextStyle(
                           fontSize: 13,
                           fontWeight: FontWeight.bold
@@ -244,7 +268,7 @@ class CaseView extends StatelessWidget {
                         ),
                       ),
                       Text(
-                        "Zamboangueno",
+                        '${widget.patients?.ethnicity}',
                         style: TextStyle(
                           fontSize: 13,
                           fontWeight: FontWeight.bold
@@ -268,7 +292,7 @@ class CaseView extends StatelessWidget {
                         ),
                       ),
                       Text(
-                        "Chavacano",
+                        '${widget.patients?.language}',
                         style: TextStyle(
                           fontSize: 13,
                           fontWeight: FontWeight.bold
@@ -291,7 +315,7 @@ class CaseView extends StatelessWidget {
                         ),
                       ),
                       Text(
-                        "1st Street, Zambowood, Zamboanga City",
+                        '${widget.patients?.address}',
                         style: TextStyle(
                           fontSize: 13,
                           fontWeight: FontWeight.bold
@@ -304,47 +328,86 @@ class CaseView extends StatelessWidget {
               SizedBox(height: 16,),
               Row(
                 children: [
-                  CaseMidBox(onTap: (){}, detail: "Temperature", icon: Icons.thermostat_outlined, iconColor: Colors.blueAccent,),
+                  CaseMidBox(
+                    onTap: (){},
+                    detail: "Temperature",
+                    value: widget.cases?.temperature.toDouble(),
+                    icon: Icons.thermostat_outlined,
+                    iconColor: Colors.blueAccent,),
                   SizedBox(width: 8,),
-                  CaseMidBox(onTap: (){}, detail: "Respiratory Rate", icon: Icons.air_outlined,),
+                  CaseMidBox(
+                    onTap: (){},
+                    detail: "Respiratory Rate",
+                    value: widget.cases?.respiratory.toDouble(),
+                    icon: Icons.air_outlined,),
                 ],
               ),
               SizedBox(height: 16,),
               Row(
                 children: [
-                  CaseMidBox(onTap: (){}, detail: "Heart Rate", icon: Icons.monitor_heart, iconColor: Colors.red,),
+                  CaseMidBox(
+                    onTap: (){},
+                    detail: "Heart Rate",
+                    value: widget.cases?.heart.toDouble(),
+                    icon: Icons.monitor_heart,
+                    iconColor: Colors.red,
+                    ),
                   SizedBox(width: 8,),
-                  CaseMidBox(onTap: (){}, detail: "Blood Pressure", icon: Icons.bloodtype, iconColor: Colors.red,),
+                  CaseMidBox(
+                    onTap: (){},
+                    detail: "Blood Pressure",
+                    value: widget.cases?.blood.toDouble(),
+                    icon: Icons.bloodtype,
+                    iconColor: Colors.red,
+                    ),
                 ],
               ),
               SizedBox(height: 16,),
               Row(
                 children: [
-                  CaseMidBox(onTap: (){}, detail: "Respiratory Rate", icon: Icons.ring_volume, iconColor: Colors.green,),
+                  CaseMidBox(
+                    onTap: (){},
+                    detail: "Respiratory Rate",
+                    value: widget.cases?.respiratory.toDouble(),
+                    icon: Icons.ring_volume,
+                    iconColor: Colors.green,
+                    ),
                   SizedBox(width: 8,),
-                  CaseMidBox(onTap: (){}, detail: "Blood Pressure", icon: Icons.line_weight, iconColor: Colors.black45,),
+                  CaseMidBox(
+                    onTap: (){},
+                    detail: "Blood Pressure",
+                    value: widget.cases?.blood.toDouble(),
+                    icon: Icons.line_weight,
+                    iconColor: Colors.black45,
+                    ),
                 ],
               ),
               SizedBox(height: 16,),
               Row(
                 children: [
-                  CaseMidBox(onTap: (){}, detail: "Heart Rate", icon: Icons.personal_injury, iconColor: Colors.black45,),
+                  CaseMidBox(
+                    onTap: (){},
+                    detail: "Heart Rate",
+                    value: widget.cases?.heart.toDouble(),
+                    icon: Icons.personal_injury,
+                    iconColor: Colors.black45,
+                    ),
                 ],
               ),
               SizedBox(height: 18,),
-              CaseEndBox(onTap: (){}, title: "CHIEF COMPLAINT", text: "Testa",),
+              CaseEndBox(onTap: (){}, title: "CHIEF COMPLAINT", text: '${widget.cases?.cc}',),
               SizedBox(height: 18,),
-              CaseEndBox(onTap: (){}, title: "PERTINENT HISTORY OF PRESENT ILLNESS", text: "Testa",),
+              CaseEndBox(onTap: (){}, title: "PERTINENT HISTORY OF PRESENT ILLNESS", text: '${widget.cases?.hpi}',),
               SizedBox(height: 18,),
-              CaseEndBox(onTap: (){}, title: "PERTINENT PAST MEDCIAL HISTORY", text: "Testa",),
+              CaseEndBox(onTap: (){}, title: "PERTINENT PAST MEDCIAL HISTORY", text: '${widget.cases?.pmh}',),
               SizedBox(height: 18,),
-              CaseEndBox(onTap: (){}, title: "PERTINENT PE FINDINGS", text: "Testa",),
+              CaseEndBox(onTap: (){}, title: "PERTINENT PE FINDINGS", text: '${widget.cases?.pe}',),
               SizedBox(height: 18,),
-              CaseEndBox(onTap: (){}, title: "WORKING IMPRESSION", text: "Testa",),
+              CaseEndBox(onTap: (){}, title: "WORKING IMPRESSION", text: '${widget.cases?.wi}',),
               SizedBox(height: 18,),
-              CaseEndBox(onTap: (){}, title: "INITIAL MANAGEMENT DONE", text: "Testa",),
+              CaseEndBox(onTap: (){}, title: "INITIAL MANAGEMENT DONE", text: '${widget.cases?.imd}',),
               SizedBox(height: 18,),
-              CaseEndBox(onTap: (){}, title: "REASON FOR REFERRAL", text: "Testa",),
+              CaseEndBox(onTap: (){}, title: "REASON FOR REFERRAL", text: '${widget.cases?.reason}',),
             ],
           ),
         ),

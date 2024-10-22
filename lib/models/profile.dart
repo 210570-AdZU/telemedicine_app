@@ -7,8 +7,8 @@ class Profile {
   String extensionName;
   String email;
   String password;
-  int hospitalId;
-  int specializationId;
+  int? hospitalId;
+  int? specializationId;
 
   Profile({
     this.id,
@@ -22,7 +22,6 @@ class Profile {
     required this.specializationId,
   });
 
-  // Convert a Profile into a Map. The keys must correspond to the column names in the database
   Map<String, dynamic> toMap() {
     return {
       'id': id,

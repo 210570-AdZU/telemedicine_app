@@ -22,6 +22,7 @@ class AuthController extends GetxController {
     ever(currentProfile, (profile) {
       if (profile != null) {
         initializeTextControllers(profile);
+        initializePasswordController(profile);
       }
     });
   }
@@ -32,6 +33,9 @@ class AuthController extends GetxController {
     lNameController.text = profile.lName;
     extensionNameController.text = profile.extensionName;
     emailController.text = profile.email;
+  }
+
+  void initializePasswordController(Profile profile) {
     passwordController.text = profile.password;
   }
 

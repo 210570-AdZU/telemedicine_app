@@ -2,10 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:layout_design/components/home_dropdownselect.dart';
 import 'package:layout_design/components/my_searchbar.dart';
-import 'package:layout_design/controllers/patient_controller.dart';
+import 'package:layout_design/controllers/case_list_controller.dart';
+
+import '../components/a_popBox.dart';
+import '../components/d_popBox.dart';
 
 class PatientPage extends StatelessWidget {
-  final PatientController controller = Get.put(PatientController());
+  final CaseListController caseListController = Get.put(CaseListController());
   PatientPage({super.key});
 
   @override
@@ -21,7 +24,7 @@ class PatientPage extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 SizedBox(width: MediaQuery.of(context).size.width * 0.03,),
-                MySearchbar(),
+                //MySearchbar(searchController: ,),
                 SizedBox(width: MediaQuery.of(context).size.width * 0.13,),
                 SizedBox(
                   width: MediaQuery.of(context).size.width * 0.3,
@@ -31,6 +34,7 @@ class PatientPage extends StatelessWidget {
                 ),
               ],
             ),
+            SizedBox(height: MediaQuery.of(context).size.height * 0.037,),
           ],
         ),
       ),

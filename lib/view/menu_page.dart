@@ -12,11 +12,11 @@ class MenuPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: PreferredSize(
-        preferredSize: Size.fromHeight(100.0), // Adjust the height as needed
+        preferredSize: Size.fromHeight(100.0),
         child: AppBar(
           automaticallyImplyLeading: false,
           flexibleSpace: Padding(
-            padding: const EdgeInsets.only(top: 20.0, left: 16), // Adjust the vertical padding as needed
+            padding: const EdgeInsets.only(top: 20.0, left: 16),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -38,20 +38,18 @@ class MenuPage extends StatelessWidget {
                       ),
                     ),
                     SizedBox(width: 8),
-                    Expanded( // Wrap Text with Expanded to avoid overflow issues
-                      child: Text(
-                        authController.fNameController.text +
-                            ' ' +
-                            authController.mNameController.text +
-                            ' ' +
-                            authController.lNameController.text,
-                        style: TextStyle(
-                          fontSize: 15,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.black54,
-                        ),
-                        overflow: TextOverflow.ellipsis, // Add overflow handling
+                    Text(
+                      authController.fNameController.text +
+                          ' ' +
+                          authController.mNameController.text +
+                          ' ' +
+                          authController.lNameController.text,
+                      style: TextStyle(
+                        fontSize: 15,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.black54,
                       ),
+                      overflow: TextOverflow.ellipsis, // Add overflow handling
                     ),
                   ],
                 ),

@@ -42,13 +42,11 @@ class FirstPageController extends GetxController {
           children: [
             GestureDetector(
               onTap: () {
-                // Close the overlay when tapped outside
                 notifOut();
               },
               child: Container(
                 width: screenWidth,
                 height: screenHeight,
-                color: Colors.transparent, // Transparent background to capture taps
               ),
             ),
             Positioned(
@@ -120,13 +118,12 @@ class FirstPageController extends GetxController {
           children: [
             GestureDetector(
               onTap: () {
-                // Close the overlay when tapped outside
                 notifOut();
               },
               child: Container(
                 width: screenWidth,
                 height: screenHeight,
-                color: Colors.transparent, // Transparent background to capture taps
+                color: Colors.transparent,
               ),
             ),
             Positioned(

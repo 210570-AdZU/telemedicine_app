@@ -21,7 +21,9 @@ class RegisterNew extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+  final theme = Theme.of(context);
     return Scaffold(
+      backgroundColor: theme.scaffoldBackgroundColor,
       body: Padding(
         padding: const EdgeInsets.all(24.0),
         child: SingleChildScrollView(
@@ -35,8 +37,8 @@ class RegisterNew extends StatelessWidget {
                   Image(
                     image: AssetImage('lib/assets/images/Removal-432.png'),
                     fit: BoxFit.cover,
-                    width: 47,
-                    height: 63,
+                    width: 56,
+                    height: 75,
                   ),
 
                 Padding(
@@ -45,14 +47,20 @@ class RegisterNew extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        'Add New Account', style: TextStyle(
-                          fontSize: 20,
+                        'Sign Up',
+                        style: TextStyle(
+                          fontSize: 22,
                           fontWeight: FontWeight.bold,
-                          color: Colors.teal
-                          ),
+                          color: Colors.teal,
+                          height: 1
+                        ),
                         textAlign: TextAlign.left,
                         ),
-                      Text('Enter credentials to continue', style: TextStyle(fontSize: 11),)
+                      Text('Enter your credentials to continue',
+                      style: TextStyle(
+                        fontSize: 13
+                        ),
+                      )
                     ],
                   ),
                 ),
@@ -106,17 +114,40 @@ class RegisterNew extends StatelessWidget {
                     isExpanded: true,
                     decoration: InputDecoration(
                       isDense: true,
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(10.0),
-                        borderSide: BorderSide(color: Colors.blue, width: 2.0),
+                      focusedBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(8),
+                          borderSide: BorderSide(
+                            width: 1,
+                            color: Colors.black12
+                          ),
+                      ),
+                      enabledBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(8),
+                          borderSide: BorderSide(
+                            width: 1,
+                            color: Colors.black12
+                          ),
+                      ),
+                      errorBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(8),
+                          borderSide: BorderSide(
+                            width: 1,
+                            color: Colors.black12
+                          ),
                       ),
                       contentPadding: EdgeInsets.symmetric(vertical: 8.0, horizontal: 16),
                     ),
                     value: profileController.hospitalId.value,
+                    hint: Text('Select Hospital'),
                     items: profileListController.hospitals.map((hospital) {
                       return DropdownMenuItem<int>(
                         value: hospital.id,
-                        child: Text(hospital.name),
+                        child: Text(
+                          hospital.name,
+                          style: TextStyle(
+                            fontWeight: FontWeight.w400
+                          ),
+                        ),
                       );
                     }).toList(),
                     onChanged: (value) {
@@ -134,17 +165,40 @@ class RegisterNew extends StatelessWidget {
                     isExpanded: true,
                     decoration: InputDecoration(
                       isDense: true,
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(10.0),
-                        borderSide: BorderSide(color: Colors.blue, width: 2.0),
+                      focusedBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(8),
+                          borderSide: BorderSide(
+                            width: 1,
+                            color: Colors.black12
+                          ),
+                      ),
+                      enabledBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(8),
+                          borderSide: BorderSide(
+                            width: 1,
+                            color: Colors.black12
+                          ),
+                      ),
+                      errorBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(8),
+                          borderSide: BorderSide(
+                            width: 1,
+                            color: Colors.black12
+                          ),
                       ),
                       contentPadding: EdgeInsets.symmetric(vertical: 8.0, horizontal: 16),
                     ),
                     value: profileController.specializationId.value,
+                    hint: Text('Select Specialization'),
                     items: profileListController.specializations.map((specialization) {
                       return DropdownMenuItem<int>(
                         value: specialization.id,
-                        child: Text(specialization.name),
+                        child: Text(
+                          specialization.name,
+                          style: TextStyle(
+                            fontWeight: FontWeight.w400
+                          ),
+                        ),
                       );
                     }).toList(),
                     onChanged: (value) {
@@ -220,7 +274,7 @@ class RegisterNew extends StatelessWidget {
                     children: [
                       Text(
                         "© Zamboanga City Medical Center 2023 , All Rights Reserved",
-                        style: TextStyle(fontSize: 8),
+                        style: TextStyle(fontSize: 10),
                       )
                     ],
                   ),
