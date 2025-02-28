@@ -85,7 +85,7 @@ class FirstPageController extends GetxController {
                             ],
                           ),
                         ),
-                        Divider(height: 0),
+                        Divider(height: 0,color: Colors.black12,),
                         Expanded(
                           child: ListView.builder(
                             padding: const EdgeInsets.all(1),
@@ -95,7 +95,7 @@ class FirstPageController extends GetxController {
                             },
                           ),
                         ),
-                        Divider(),
+                        Divider(color: Colors.black12,),
                         Text('', style: TextStyle(fontSize: 4),)
                       ],
                     ),

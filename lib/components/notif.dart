@@ -32,7 +32,7 @@ class _NotifState extends State<Notif> {
         child: Container(
           color: isHovered ? Colors.black12 : Colors.transparent,
           child: Padding(
-            padding: const EdgeInsets.only(left: 2, right: 2, top: 6),
+            padding: const EdgeInsets.only(left: 6, right: 6, top: 6),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -41,9 +41,9 @@ class _NotifState extends State<Notif> {
                     Text(
                       "New Account",
                       style: TextStyle(
-                        fontSize: 15,
+                        fontSize: 16,
                         fontWeight: FontWeight.bold,
-                        color: Colors.black54
+                        color: Colors.blueGrey
                       ),
                     ),
                     Spacer(),
@@ -59,7 +59,8 @@ class _NotifState extends State<Notif> {
                 Text(
                   "New account has been registered from Camp Navarro Hospital named Reejay",
                   style: TextStyle(
-                    fontSize: 10
+                    fontSize: 11,
+                    color: Colors.blueGrey
                   ),
                   )
               ],
