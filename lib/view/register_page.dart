@@ -254,7 +254,6 @@ class RegisterPage extends StatelessWidget {
                     if(profileController.fNameController.text.isEmpty
                     || profileController.mNameController.text.isEmpty
                     || profileController.lNameController.text.isEmpty
-                    || profileController.extensionNameController.text.isEmpty
                     || profileController.emailController.text.isEmpty
                     || profileController.passwordController.text.isEmpty
                     || profileController.hospitalId.value.isBlank!

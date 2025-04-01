@@ -251,8 +251,19 @@ class RegisterNew extends StatelessWidget {
                   text: "Submit",
                   color: Colors.blueGrey,
                   onTap: () {
-                    profileController.registerProfile();
-                    profileListController.loadProfiles();
+                    if(profileController.fNameController.text.isEmpty
+                    || profileController.mNameController.text.isEmpty
+                    || profileController.lNameController.text.isEmpty
+                    || profileController.emailController.text.isEmpty
+                    || profileController.passwordController.text.isEmpty
+                    || profileController.hospitalId.value.isBlank!
+                    || profileController.specializationId.value.isBlank!){
+                      Get.snackbar('Incomplete fields', 'Complete all fields');
+                    }
+                    else{
+                      profileController.registerProfile();
+                      profileListController.loadProfiles();
+                    }
                   },
                 ),
           

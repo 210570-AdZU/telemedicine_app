@@ -68,7 +68,7 @@ class _MyTextfieldState extends State<MyTextfield> {
 @override
 Widget build(BuildContext context) {
   String? validateName(String value) {
-    if (!_showError && value.isEmpty) {
+    if (!_showError && value.isEmpty && (widget.identifier.toLowerCase() != "extension name")) {
       return "Please enter ${widget.identifier.toLowerCase()}";
     } else if (widget.ConfirmPwd && widget.passwordController != null && widget.controller.text != widget.passwordController!.text) {
       return "Passwords do not match";

@@ -31,7 +31,7 @@ class AuthController extends GetxController {
     fNameController.text = profile.fName;
     mNameController.text = profile.mName;
     lNameController.text = profile.lName;
-    extensionNameController.text = profile.extensionName;
+    extensionNameController.text = profile.extensionName ?? '';
     emailController.text = profile.email;
   }
 

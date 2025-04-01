@@ -4,7 +4,7 @@ class Profile {
   String fName;
   String mName;
   String lName;
-  String extensionName;
+  String? extensionName;
   String email;
   String password;
   int? hospitalId;
@@ -15,7 +15,7 @@ class Profile {
     required this.fName,
     required this.mName,
     required this.lName,
-    required this.extensionName,
+    this.extensionName,
     required this.email,
     required this.password,
     required this.hospitalId,
